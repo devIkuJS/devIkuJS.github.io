@@ -1,0 +1,368 @@
+.info-teams-container {
+    display: grid;
+    grid-template-columns: minmax(64px,1fr) auto minmax(64px,1fr);
+    grid-template-rows: auto;
+    grid-gap: 16px;
+}
+
+.info-teams-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-teams-result {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-team-logo {
+    width: 96px;
+    height: 54px;
+}
+
+.list-picks-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 8px;
+}
+
+.pick-hero-draft-team {
+    display: grid;
+    grid-template-columns: 64px auto;
+    grid-template-rows: auto auto;
+    margin: 8px 0 0;
+}
+
+.pick-player-name {
+    grid-column: 1/span 2;
+    grid-row: 2/3;
+    line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pick-hero-draft-team-dire {
+    grid-template-columns: auto 64px;
+}
+
+.pick-hero-dire {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+.btn-vs {
+    --bs-btn-padding-x: 1rem;
+    --bs-btn-padding-y: 0.1rem;
+    --bs-btn-font-family: ;
+    --bs-btn-font-size: 0.9375rem;
+    --bs-btn-font-weight: bold;
+    --bs-btn-line-height: 1.5;
+    --bs-btn-color: #000;
+    --bs-btn-bg: #fffc00;
+    --bs-btn-border-width: 1px;
+    --bs-btn-border-color: transparent;
+    --bs-btn-border-radius: 1rem;
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-box-shadow: none;
+    --bs-btn-disabled-opacity: 0.65;
+    --bs-btn-focus-box-shadow: 0 0 0 0 rgba(var(--bs-btn-focus-shadow-rgb), .5);
+    display: inline-block;
+    padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+    font-family: var(--bs-btn-font-family);
+    font-size: var(--bs-btn-font-size);
+    font-weight: var(--bs-btn-font-weight);
+    line-height: var(--bs-btn-line-height);
+    color: var(--bs-btn-color);
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+    border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+    border-radius: var(--bs-btn-border-radius);
+    background-color: var(--bs-btn-bg);
+}
+
+.name-team-width{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.team-logo{
+    width: 122px;
+    height: 80px;
+}
+
+.upcoming-series__item:not(:last-child) {
+    padding: 10px 0 8px;
+    border-bottom: 1px solid #676a79;
+}
+
+.upcoming-series__item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto;
+    grid-gap: 8px;
+}
+
+.upcoming-series__series {
+    display: grid;
+    grid-template-columns: 40px 1fr 48px;
+    grid-template-rows: 24px 24px 24px;
+    grid-gap: 8px;
+    width: 100%;
+    padding: 10px 0 10px 0;
+}
+
+.upcoming-series__championship {
+    grid-column: 1/span 3;
+    grid-row: 1/2;
+}
+
+.upcoming-series__best-of {
+    padding: 4px 8px;
+    background: #fffc00;
+    color: #333;
+    border-radius: 18px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.logo-matches {
+    width:40px;
+    height:24px
+}
+
+
+.series-teams__primary-label {
+    padding: 1px 8px 0;
+    background: #fffc00;
+    color: black;
+    border-radius: 18px;
+    font-weight: bold;
+}
+
+.series-teams__secondary-label {
+    height: 22px;
+    margin: 4px 0 0;
+    opacity: .7;
+    font-size: 14px;
+    text-align: center;
+}
+
+.series-list__match {
+    display: grid;
+    grid-template-columns: 80px 6fr 24px 1fr 24px 6fr;
+    grid-template-rows: 26px;
+    grid-gap: 4px;
+    transition: border-color .2s;
+    margin: 8px 0 0;
+    padding: 8px;
+    border-radius: .5rem;
+    border: 1px solid #fffc00;
+    cursor: pointer;
+    color: #282b31;
+    text-decoration: none;
+}
+
+.series-list__match-map-number {
+    grid-column: 1/2;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.series-list__winner--team1 {
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+
+.series-list__winner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.series-list__winner--team2 {
+    grid-column: 5/6;
+    grid-row: 1/2;
+}
+
+.series-list__winner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.series-list__heroes--team1 {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+.series-list-heroes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.series-list-heroes__image {
+    width: 47px;
+    height: 26px;
+}
+
+.series-list__heroes--team2 {
+    grid-column: 6/7;
+    grid-row: 1/2;
+}
+
+.series-list__vs {
+    grid-column: 4/5;
+    grid-row: 1/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.v-theme--light {
+    color-scheme: normal;
+    --v-theme-background: 255,255,255;
+    --v-theme-background-overlay-multiplier: 1;
+    --v-theme-surface: 255,255,255;
+    --v-theme-surface-overlay-multiplier: 1;
+    --v-theme-surface-variant: 66,66,66;
+    --v-theme-surface-variant-overlay-multiplier: 2;
+    --v-theme-on-surface-variant: 238,238,238;
+    --v-theme-primary: 98,0,238;
+    --v-theme-primary-overlay-multiplier: 2;
+    --v-theme-primary-darken-1: 55,0,179;
+    --v-theme-primary-darken-1-overlay-multiplier: 2;
+    --v-theme-secondary: 3,218,198;
+    --v-theme-secondary-overlay-multiplier: 1;
+    --v-theme-secondary-darken-1: 1,135,134;
+    --v-theme-secondary-darken-1-overlay-multiplier: 1;
+    --v-theme-error: 176,0,32;
+    --v-theme-error-overlay-multiplier: 2;
+    --v-theme-info: 33,150,243;
+    --v-theme-info-overlay-multiplier: 1;
+    --v-theme-success: 76,175,80;
+    --v-theme-success-overlay-multiplier: 1;
+    --v-theme-warning: 251,140,0;
+    --v-theme-warning-overlay-multiplier: 1;
+    --v-theme-on-background: 0,0,0;
+    --v-theme-on-surface: 0,0,0;
+    --v-theme-on-primary: 255,255,255;
+    --v-theme-on-primary-darken-1: 255,255,255;
+    --v-theme-on-secondary: 0,0,0;
+    --v-theme-on-secondary-darken-1: 255,255,255;
+    --v-theme-on-error: 255,255,255;
+    --v-theme-on-info: 255,255,255;
+    --v-theme-on-success: 255,255,255;
+    --v-theme-on-warning: 255,255,255;
+    --v-border-color: 0, 0, 0;
+    --v-border-opacity: 0.12;
+    --v-high-emphasis-opacity: 0.87;
+    --v-medium-emphasis-opacity: 0.6;
+    --v-disabled-opacity: 0.38;
+    --v-idle-opacity: 0.04;
+    --v-hover-opacity: 0.04;
+    --v-focus-opacity: 0.12;
+    --v-selected-opacity: 0.08;
+    --v-activated-opacity: 0.12;
+    --v-pressed-opacity: 0.12;
+    --v-dragged-opacity: 0.08;
+    --v-theme-kbd: 33, 37, 41;
+    --v-theme-on-kbd: 255, 255, 255;
+    --v-theme-code: 245, 245, 245;
+    --v-theme-on-code: 0, 0, 0;
+}
+
+.series-list__vs-icon {
+    color: #e3e4e8 !important;
+}
+
+.v-icon--size-default {
+    font-size: calc(1 * 1.5em);
+}
+
+.v-icon {
+    --v-icon-size-multiplier: 1;
+    align-items: center;
+    display: inline-flex;
+    font-feature-settings: "liga";
+    height: 1em;
+    justify-content: center;
+    letter-spacing: normal;
+    line-height: 1;
+    position: relative;
+    text-indent: 0;
+    user-select: none;
+    vertical-align: middle;
+    width: 1em;
+}
+
+@media only screen and (min-width: 360px) and (max-width: 623px) {
+    .series-list__match {
+        grid-template-columns: minmax(0px,1fr) 24px 210px;
+        grid-template-rows: 24px 24px;
+        grid-gap: 4px;
+    }
+}
+
+@media only screen and (max-width: 623px) {
+    .series-list__match-map-number {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+}
+
+@media only screen and (max-width: 623px) {
+    .series-list__winner--team1 {
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+}
+
+@media only screen and (max-width: 623px) {
+    .series-list__winner--team2 {
+        grid-column: 2/3;
+        grid-row: 2/3;
+    }
+}
+
+@media only screen and (max-width: 623px) {
+    .series-list__heroes--team1 {
+        grid-column: 3/4;
+        grid-row: 1/2;
+    }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 623px) {
+    .series-list-heroes__image {
+        width: 42px;
+        height: 24px;
+    }
+}
+
+@media only screen and (max-width: 623px) {
+    .series-list__heroes--team2 {
+        grid-column: 3/4;
+        grid-row: 2/3;
+    }
+}
+
+@media only screen and (max-width: 623px) {
+    .series-list__vs {
+        display: none;
+    }
+}

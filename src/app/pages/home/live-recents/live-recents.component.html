@@ -1,0 +1,194 @@
+<div class="card">
+  <div class="card-header d-sm-flex justify-content-between align-items-center border-0">
+     <ul class="nav nav-tabs nav-bottom-line justify-content-center justify-content-md-start" role="tablist">
+        <li class="nav-item" role="presentation"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-1" aria-selected="true" role="tab"> En vivo </a> </li>
+        <li class="nav-item" role="presentation"> <a class="nav-link" data-bs-toggle="tab" href="#tab-2" aria-selected="false" role="tab" tabindex="-1"> Recientes </a> </li>
+     </ul>
+  </div>
+  <div class="card-body card-body-padding-0">
+     <div class="tab-content">
+        <div class="tab-pane fade active show" id="tab-1" role="tabpanel">
+           <div class="g-3">
+              <div *ngIf="!liveMatches?.length;else liveMatchNotEmpty">
+                 <h4 class="text-center text-white"><i class="d2ce blush"></i> No se encontraron partidas en vivo <i class="d2ce cheeky"></i></h4>
+
+              </div>
+              <ng-template #liveMatchNotEmpty>
+                 <div *ngFor="let item of liveMatches">
+                    <h4 class="text-center text-white container-recent">{{item.league_name}}</h4>
+                    <div class="hstack gap-5 mb-3" style="display: flex;justify-content: center;">
+                       <div class="overflow-hidden text-center">
+                          <img [src]="item.opponents[0].image_url" loading="lazy" style="width: 122px;height: 110px;">
+                          <p class="mb-0 mt-3 small text-white name-team-width">{{item.opponents[0].name}}</p>
+                       </div>
+                       <div class="series-teams__info-container">
+                          <div class="series-teams__primary-label">{{item.results[0].score}} - {{item.results[1].score}}</div>
+                          <div class="series-teams__secondary-label">BO{{item.number_of_games}}</div>
+                       </div>
+                       <div class="overflow-hidden text-center">
+                          <img [src]="item.opponents[1].image_url" style="width: 122px;height: 110px;" loading="lazy">
+                          <p class="mb-0 mt-3 small text-white name-team-width" >{{item.opponents[1].name}}</p>
+                       </div>
+                    </div>
+                    <div class="mb-4">
+                       <div>
+                          <a class="series-list__match" alt="Map 1" href="/matches/96961">
+                             <div class="series-list__match-map-number">
+                                <span class="text-body-2">Mapa 1</span>
+                             </div>
+                             <div class="series-list__winner series-list__winner--team1">
+                             </div>
+                             <div class="series-list__winner series-list__winner--team2">
+                                <img src="https://hawk.live/build/assets/winner-crown-a3cd9c5d.png" width="20" height="20" loading="lazy">
+                             </div>
+                             <div class="series-list-heroes series-list__heroes--team1">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_medusa.png" class="series-list-heroes__image" alt="Medusa" title="Medusa" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_legion_commander.png" class="series-list-heroes__image" alt="Legion Commander" title="Legion Commander" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_marci.png" class="series-list-heroes__image" alt="Marci" title="Marci" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_storm_spirit.png" class="series-list-heroes__image" alt="Storm Spirit" title="Storm Spirit" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_keeper_of_the_light.png" class="series-list-heroes__image" alt="Keeper of the Light" title="Keeper of the Light" loading="lazy">
+                             </div>
+                             <div class="series-list-heroes series-list__heroes--team2">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_medusa.png" class="series-list-heroes__image" alt="Medusa" title="Medusa" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_legion_commander.png" class="series-list-heroes__image" alt="Legion Commander" title="Legion Commander" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_marci.png" class="series-list-heroes__image" alt="Marci" title="Marci" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_storm_spirit.png" class="series-list-heroes__image" alt="Storm Spirit" title="Storm Spirit" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_keeper_of_the_light.png" class="series-list-heroes__image" alt="Keeper of the Light" title="Keeper of the Light" loading="lazy">
+                             </div>
+                             <div class="series-list__vs">
+                                <i class="v-icon notranslate v-theme--light v-icon--size-default series-list__vs-icon" aria-hidden="true">
+                                   <svg class="v-icon__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                                      <path d="M19,13H5V11H19V13Z"></path>
+                                   </svg>
+                                </i>
+                             </div>
+                          </a>
+                       </div>
+                       <div>
+                          <a class="series-list__match" alt="Map 1" href="/matches/96961">
+                             <div class="series-list__match-map-number">
+                                <span class="text-body-2">Mapa 2</span>
+                             </div>
+                             <div class="series-list__winner series-list__winner--team1">
+                             </div>
+                             <div class="series-list__winner series-list__winner--team2">
+                                <img src="https://hawk.live/build/assets/winner-crown-a3cd9c5d.png" width="20" height="20" loading="lazy">
+                             </div>
+                             <div class="series-list-heroes series-list__heroes--team1">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_medusa.png" class="series-list-heroes__image" alt="Medusa" title="Medusa" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_legion_commander.png" class="series-list-heroes__image" alt="Legion Commander" title="Legion Commander" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_marci.png" class="series-list-heroes__image" alt="Marci" title="Marci" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_storm_spirit.png" class="series-list-heroes__image" alt="Storm Spirit" title="Storm Spirit" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_keeper_of_the_light.png" class="series-list-heroes__image" alt="Keeper of the Light" title="Keeper of the Light" loading="lazy">
+                             </div>
+                             <div class="series-list-heroes series-list__heroes--team2">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_medusa.png" class="series-list-heroes__image" alt="Medusa" title="Medusa" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_legion_commander.png" class="series-list-heroes__image" alt="Legion Commander" title="Legion Commander" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_marci.png" class="series-list-heroes__image" alt="Marci" title="Marci" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_storm_spirit.png" class="series-list-heroes__image" alt="Storm Spirit" title="Storm Spirit" loading="lazy">
+                                <img src="https://hawk.live/images/heroes/npc_dota_hero_keeper_of_the_light.png" class="series-list-heroes__image" alt="Keeper of the Light" title="Keeper of the Light" loading="lazy">
+                             </div>
+                             <div class="series-list__vs">
+                                <i class="v-icon notranslate v-theme--light v-icon--size-default series-list__vs-icon" aria-hidden="true">
+                                   <svg class="v-icon__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                                      <path d="M19,13H5V11H19V13Z"></path>
+                                   </svg>
+                                </i>
+                             </div>
+                          </a>
+                       </div>
+                    </div>
+                 </div>
+              </ng-template>
+           </div>
+        </div>
+        <div class="tab-pane fade" id="tab-2" role="tabpanel">
+           <div class="g-3" *ngFor="let item of recentMatches">
+              <h4 class="text-center text-white container-recent">{{item.league_name}}</h4>
+              <div class="hstack gap-5 mb-3" style="display: flex;justify-content: center;">
+                 <div class="overflow-hidden text-center">
+                    <img [src]="item.opponents[0].image_url" loading="lazy" style="width: 122px;height: 110px;">
+                    <p class="mb-0 mt-3 small text-white name-team-width">{{item.opponents[0].name}}</p>
+                 </div>
+                 <div class="series-teams__info-container">
+                    <div class="series-teams__primary-label">{{item.results[0].score}} - {{item.results[1].score}}</div>
+                    <div class="series-teams__secondary-label">BO{{item.number_of_games}}</div>
+                 </div>
+                 <div class="overflow-hidden text-center">
+                    <img [src]="item.opponents[1].image_url" style="width: 122px;height: 110px;" loading="lazy">
+                    <p class="mb-0 mt-3 small text-white name-team-width" >{{item.opponents[1].name}}</p>
+                 </div>
+              </div>
+              <div class="mb-4">
+                 <div>
+                    <a class="series-list__match" alt="Map 1" href="/matches/96961">
+                       <div class="series-list__match-map-number">
+                          <span class="text-body-2">Mapa 1</span>
+                       </div>
+                       <div class="series-list__winner series-list__winner--team1">
+                       </div>
+                       <div class="series-list__winner series-list__winner--team2">
+                          <img src="https://hawk.live/build/assets/winner-crown-a3cd9c5d.png" width="20" height="20" loading="lazy">
+                       </div>
+                       <div class="series-list-heroes series-list__heroes--team1">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_medusa.png" class="series-list-heroes__image" alt="Medusa" title="Medusa" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_legion_commander.png" class="series-list-heroes__image" alt="Legion Commander" title="Legion Commander" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_marci.png" class="series-list-heroes__image" alt="Marci" title="Marci" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_storm_spirit.png" class="series-list-heroes__image" alt="Storm Spirit" title="Storm Spirit" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_keeper_of_the_light.png" class="series-list-heroes__image" alt="Keeper of the Light" title="Keeper of the Light" loading="lazy">
+                       </div>
+                       <div class="series-list-heroes series-list__heroes--team2">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_medusa.png" class="series-list-heroes__image" alt="Medusa" title="Medusa" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_legion_commander.png" class="series-list-heroes__image" alt="Legion Commander" title="Legion Commander" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_marci.png" class="series-list-heroes__image" alt="Marci" title="Marci" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_storm_spirit.png" class="series-list-heroes__image" alt="Storm Spirit" title="Storm Spirit" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_keeper_of_the_light.png" class="series-list-heroes__image" alt="Keeper of the Light" title="Keeper of the Light" loading="lazy">
+                       </div>
+                       <div class="series-list__vs">
+                          <i class="v-icon notranslate v-theme--light v-icon--size-default series-list__vs-icon" aria-hidden="true">
+                             <svg class="v-icon__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                                <path d="M19,13H5V11H19V13Z"></path>
+                             </svg>
+                          </i>
+                       </div>
+                    </a>
+                 </div>
+                 <div>
+                    <a class="series-list__match" alt="Map 1" href="/matches/96961">
+                       <div class="series-list__match-map-number">
+                          <span class="text-body-2">Mapa 2</span>
+                       </div>
+                       <div class="series-list__winner series-list__winner--team1">
+                       </div>
+                       <div class="series-list__winner series-list__winner--team2">
+                          <img src="https://hawk.live/build/assets/winner-crown-a3cd9c5d.png" width="20" height="20" loading="lazy">
+                       </div>
+                       <div class="series-list-heroes series-list__heroes--team1">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_medusa.png" class="series-list-heroes__image" alt="Medusa" title="Medusa" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_legion_commander.png" class="series-list-heroes__image" alt="Legion Commander" title="Legion Commander" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_marci.png" class="series-list-heroes__image" alt="Marci" title="Marci" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_storm_spirit.png" class="series-list-heroes__image" alt="Storm Spirit" title="Storm Spirit" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_keeper_of_the_light.png" class="series-list-heroes__image" alt="Keeper of the Light" title="Keeper of the Light" loading="lazy">
+                       </div>
+                       <div class="series-list-heroes series-list__heroes--team2">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_medusa.png" class="series-list-heroes__image" alt="Medusa" title="Medusa" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_legion_commander.png" class="series-list-heroes__image" alt="Legion Commander" title="Legion Commander" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_marci.png" class="series-list-heroes__image" alt="Marci" title="Marci" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_storm_spirit.png" class="series-list-heroes__image" alt="Storm Spirit" title="Storm Spirit" loading="lazy">
+                          <img src="https://hawk.live/images/heroes/npc_dota_hero_keeper_of_the_light.png" class="series-list-heroes__image" alt="Keeper of the Light" title="Keeper of the Light" loading="lazy">
+                       </div>
+                       <div class="series-list__vs">
+                          <i class="v-icon notranslate v-theme--light v-icon--size-default series-list__vs-icon" aria-hidden="true">
+                             <svg class="v-icon__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                                <path d="M19,13H5V11H19V13Z"></path>
+                             </svg>
+                          </i>
+                       </div>
+                    </a>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
