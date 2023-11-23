@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { DetailMatchComponent } from './detail-match/detail-match.component';
 import { DetailMatchModule } from './detail-match/detail-match.module';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 
 
@@ -18,7 +19,8 @@ import { DetailMatchModule } from './detail-match/detail-match.module';
     CommonModule,
     SharedModule,
     HomeModule,
-    DetailMatchModule
+    DetailMatchModule,
+    CanvasJSAngularChartsModule
   ],
   exports: [
     HomeComponent,

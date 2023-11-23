@@ -31,7 +31,7 @@ export class Utils {
       return opponents.map(opponent => ({
         id: opponent.opponent.id,
         name: opponent.opponent.name,
-        image_url: opponent.opponent.image_url
+        image_url: opponent.opponent.image_url == null ? "./assets/img/dota-logo.jpg" : opponent.opponent.image_url
       }));
 
     }

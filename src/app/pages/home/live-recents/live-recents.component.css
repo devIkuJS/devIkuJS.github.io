@@ -20,3 +20,52 @@
     padding-top: 0px;
     padding-bottom: 0px;
 }
+
+.series-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.series-teams {
+    display: grid;
+    grid-template-columns: minmax(64px,1fr) auto minmax(64px,1fr);
+    grid-template-rows: auto;
+    grid-gap: 16px;
+}
+
+.series-teams-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media only screen and (min-width: 624px) {
+    .series-teams-item__logo-container, .series-teams-item__logo {
+        width: 128px;
+        height: 72px;
+    }
+}
+
+.series-teams__info-container {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-responsive {
+	height: 0;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	position: relative;
+}
+.video-responsive iframe, .video-responsive object, .video-responsive embed {
+	height: 80%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}

@@ -6,6 +6,7 @@ export interface ApiMatch {
     streams_list: Stream[];
     number_of_games: number;
     results: Results[];
+    serie: Serie;
     status: string;
 }
 
@@ -13,6 +14,13 @@ export interface League {
     id: number;
     name: string;
     image_url: string;
+}
+
+export interface Serie {
+    id: number;
+    league_id: number;
+    full_name: string;
+    name: string;
 }
 
 export interface Opponents {
@@ -49,6 +57,15 @@ export interface Pastmatch {
     id: number; 
     league_name: string;
     begin_at: string;
+    opponents: Opponent[];
+    stream_url: string;
+    number_of_games: string;
+    results: Results[];
+}
+
+export interface Livematch {
+    id: number; 
+    league_name: string;
     opponents: Opponent[];
     stream_url: string;
     number_of_games: string;

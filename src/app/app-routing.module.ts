@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesRoutingModule } from './pages/pages-routing.module';
-import { AuthRoutingModule } from './auth/auth-routing.module';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -14,8 +13,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
-    PagesRoutingModule,
-    AuthRoutingModule
+    PagesRoutingModule
   ],
   exports:[RouterModule]
 })

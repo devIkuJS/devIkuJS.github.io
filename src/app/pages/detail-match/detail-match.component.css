@@ -1,0 +1,73 @@
+.map {
+    position: relative;
+    width: 400px; 
+    height: 400px;
+    max-width: 300px; 
+    max-height: 300px;
+    margin: auto;
+}
+
+.container-map {
+    position: relative;
+}
+
+.container-element-map {
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    z-index: 2;
+}
+
+.hero-icons {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.radiant-safe img, .radiant-mid img, .radiant-off img, .radiant-jungle img {
+    filter: drop-shadow(rgb(102, 187, 106) 0px 0px 5px);
+}
+
+.hero-icons img {
+    width: 26px;
+}
+
+.radiant-mid {
+    left: 130px;
+    top: 155px;
+}
+
+.radiant-off {
+    flex-flow: column wrap;
+    left: 10px;
+    top: 75px;
+    width: 26px;
+}
+
+.radiant-safe {
+    bottom: 10px;
+    flex-direction: row-reverse;
+    right: 30px;
+}
+
+.dire-safe {
+    left: 20px;
+    top: 10px;
+}
+
+.dire-mid {
+    flex-direction: row-reverse;
+    right: 145px;
+    top: 125px;
+}
+
+.dire-off {
+    bottom: 70px;
+    flex-flow: column-reverse wrap;
+    right: 10px;
+    width: 26px;
+}
+

@@ -1,6 +1,9 @@
+import { JsonpInterceptor } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Observable, Subject, forkJoin } from 'rxjs';
 import { BetsService } from 'src/app/services/data-manager/bets.service';
-import { ApiMatch, Pastmatch } from 'src/app/services/interfaces/match.interface';
+import { TeamService } from 'src/app/services/data-manager/team.service';
+import { ApiMatch, Livematch, Pastmatch } from 'src/app/services/interfaces/match.interface';
 import { Utils } from 'src/app/services/utils/utils';
 
 @Component({
@@ -10,13 +13,17 @@ import { Utils } from 'src/app/services/utils/utils';
 })
 export class LiveRecentsComponent {
 
-  recentMatches: Pastmatch[] = [];
-  liveMatches: Pastmatch[] = [];
+  recentMatches: any[] = [];
+  liveMatches: Livematch[] = [];
+  teams: any[] = [];
+  recentMatchesOne: any[] = [];
 
-  constructor(private _betsService:BetsService ) {}
+
+  constructor(private _betsService:BetsService , private _teamService: TeamService) {}
 
   ngOnInit(): void {
     this.getRecentsMatch();
+    this.getLiveMatch();
   }
 
   getLiveMatch() {
@@ -25,38 +32,47 @@ export class LiveRecentsComponent {
     })
   }
 
+  
+
   getRecentsMatch() {
-    return this._betsService.getRecentMatches().subscribe( data => {
-      this.mapRecentMatch(data)
-    })
+    this._betsService.getRecentMatches().subscribe(dataResult => {
+      dataResult.forEach(item => {
+        this._teamService.getInfoTeam(item.radiant_team_id).subscribe(data => {
+          this.recentMatches.push(
+            { 
+              match_id: item.match_id,
+              league_name: item.league_name,
+              radiant_name: item.radiant_name,
+              dire_name:item.dire_name,
+              radiant_score: item.radiant_score,
+              dire_score: item.dire_score,
+              radiant_team_id: item.radiant_team_id,
+              dire_team_id: item.dire_team_id,
+              logo_radiant: data.logo_url,
+              logo_dire: "assets/img/tower_dire.png"
+          });
+        })
+      });
+   });
+
   }
 
-  setLiveMatches(value: Pastmatch[]): void {
+  setRecentMatches(value: any[]): void {
+    this.recentMatches = value
+    console.log(this.recentMatches);
+  }
+
+  setLiveMatches(value: Livematch[]): void {
     this.liveMatches = value
   }
 
-  setRecentMatches(value: Pastmatch[]): void {
-    this.recentMatches = value
-  }
-
-  private diffMinsToComingGame(begin_at: string): string {
-    var hourNow = new Date();
-    var hourGame = new Date(begin_at);
-    var diffMs = (hourGame.getTime() - hourNow.getTime());
-    var diffHrs = Math.floor((diffMs % 86400000) / 3600000); 
-    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-    var mensajeHrs = diffHrs == 0 ? "" : `${diffHrs} h`;
-    return  `${mensajeHrs} ${diffMins} min`
-  }
-
   private mapLiveMatch(serviceMatch: ApiMatch[]): void {
-    const matches: Pastmatch[] = serviceMatch.map(match => ({
+    const matches: Livematch[] = serviceMatch.map(match => ({
       id: match.id,
-      league_name: match.league.name,
-      begin_at: this.diffMinsToComingGame(match.begin_at),
+      league_name: `${match.league.name} ${match.serie.full_name}`,
       opponents: match.opponents.map(opponent => ({
         id: opponent.opponent.id,
-        name: opponent.opponent.name,
+        name: this.titleCase(opponent.opponent.name),
         image_url: opponent.opponent.image_url
       })),
       stream_url: Utils.getStream(match.streams_list),
@@ -70,27 +86,16 @@ export class LiveRecentsComponent {
     this.setLiveMatches(matches)
   }
 
-  private mapRecentMatch(serviceMatch: ApiMatch[]): void {
-    const matches: Pastmatch[] = serviceMatch.map(match => ({
-      id: match.id,
-      league_name: match.league.name,
-      begin_at: this.diffMinsToComingGame(match.begin_at),
-      opponents: match.opponents.map(opponent => ({
-        id: opponent.opponent.id,
-        name: opponent.opponent.name,
-        image_url: opponent.opponent.image_url
-      })),
-      stream_url: Utils.getStream(match.streams_list),
-      number_of_games: String(match.number_of_games),
-      results: match.results.map(result => ({
-        score: result.score,
-        team_id: result.team_id,
-      })),
-    }))
-
-    this.setRecentMatches(matches)
+   titleCase(str: string) {
+    str.toLowerCase();
+    var strAr = str.split(" ");
+    for(var i=0;i<strAr.length;i++)
+    {
+       strAr[i] = strAr[i].charAt(0).toUpperCase() + strAr[i].substring(1).toLowerCase();     
+    }
+    str = strAr.join(" ");
+    return str;
   }
 
-  
 
 }
