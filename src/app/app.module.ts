@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -7,6 +7,10 @@ import { PagesModule } from './pages/pages.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HeaderInterceptor } from './services/data-manager/header.interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+const routes: any = 
+  {backdropBorderRadius: '4px'};
 
 @NgModule({
   declarations: [
@@ -18,6 +22,7 @@ import { HeaderInterceptor } from './services/data-manager/header.interceptor.se
     HttpClientModule,
     AppRoutingModule,
     PagesModule,
+    BrowserAnimationsModule
   ],
   providers: [ 
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
@@ -26,3 +31,4 @@ import { HeaderInterceptor } from './services/data-manager/header.interceptor.se
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }
+

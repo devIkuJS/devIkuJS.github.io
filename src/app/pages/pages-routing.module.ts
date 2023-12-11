@@ -6,7 +6,7 @@ import { DetailMatchComponent } from './detail-match/detail-match.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'detalle-partida/:id', component: DetailMatchComponent }
+  {path: 'detalle-partida/:matchid/series-id/:seriesid/teams/:teamidhome/:teamidaway', component: DetailMatchComponent }
   ]
 
 @NgModule({

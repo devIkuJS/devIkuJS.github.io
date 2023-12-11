@@ -71,3 +71,145 @@
     width: 26px;
 }
 
+.teams{
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.left {
+    align-items: center;
+    display: flex;
+}
+
+.text-bo{
+    font-size:20px;
+    color: var(--bs-card-title-color);
+    font-weight:bold;
+}
+
+.team-detail-logo{
+    /*max-width: none;
+    width: 50px;
+    height: 30px;
+    */
+}
+
+.teams .teams-item {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.teams .teams-item .image {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.text-teams{
+    font-size:20px;
+    color:#fff;
+    font-weight:bold;
+    text-align: center;
+}
+
+.text-score{
+    flex-shrink: 0;
+}
+
+.text-tournament, table th {
+    color: var(--bs-card-title-color);
+}
+
+table {
+    text-align: center;
+}
+table td {
+    color: #fff;
+}
+
+
+.stats-block__col:first-child {
+    text-align: left;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.block-player span {
+    display: block;
+}
+
+.block-player strong , .block-player span {
+    padding-left: 10px;
+}
+
+.stats-block--photos .stats-block__content {
+    padding: 4px 2px;
+}
+.dflex {
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.stats-block__photo {
+    width: 20%;
+    padding: 2px;
+}
+
+.stats-block__photo picture {
+    display: block;
+    position: relative;
+    text-align: center;
+}
+
+.stats-block__photo picture img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+@media (max-width: 576px) { 
+    .text-bo, .text-teams{
+        font-size:15px;
+    }
+
+    .text-nickname{
+        font-size: 13px;
+    }
+
+    .card-team{
+        padding: 0.95rem 0.5rem;
+    }
+
+    .teams, .teams .teams-item{
+        gap: 5px;
+    }
+
+    .block-player{
+        font-size: 10px;
+    }
+
+    .block-player strong , .block-player span {
+        padding-left: 0px;
+    }
+
+    .hero-icon-img {
+        max-width: none;
+    }
+
+}
+
+
+
+
+

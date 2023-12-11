@@ -72,6 +72,82 @@ export interface Livematch {
     results: Results[];
 }
 
+export interface Recentmatch {
+    id: number; 
+    league_name: Tournament;
+    best_of: number;
+    participants: Participant[];
+    matches: MatchTwo[];
+}
+
+export interface Tournament {
+    id: number;
+    name: string;
+}
+
+export interface Participant {
+    id: number;
+    team_name: string;
+    team_logo: string;
+    score: number;
+}
+
+export interface MatchTwo {
+    id: number; 
+}
+
+export interface DetailSerieMatch {
+    id: number; 
+    league_name: string;
+    teamHomeName: string;
+    teamHomeLogo: string;
+    teamHomeScore: number;
+    teamAwayName: string;
+    teamAwayLogo: string;
+    teamAwayScore: number;
+    teamHomePlayers: Team[];
+    teamAwayPlayers: Team[];
+    best_of: number;
+}
+
+export interface Hero {
+    id: number;
+    url_image: string;
+    url_icon: string; 
+    name: string;
+}
+
+
+export interface Team {
+    id: number;
+    hero: Hero;
+    nick_name: string; 
+    level: number;
+    kills: any;
+    deaths: any;
+    assists: any;
+    gold: any;
+    net_worth: any;
+}
+
+export interface DetailGameMatch {
+    playersHome: Team[];
+    playersAway: Team[];
+    idRosterHome: number;
+    idRosterAway: number;
+}
+
+export interface H2HMatch {
+    tournament: string;
+    endDate: any;
+    teamHomeName: string;
+    teamHomeLogo: string;
+    teamHomeScore: number;
+    teamAwayName: string;
+    teamAwayLogo: string;
+    teamAwayScore: number;
+}
+
 export enum StatusGame {
     finished = "finished",
     not_played = "not_played",

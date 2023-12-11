@@ -1,9 +1,6 @@
-import { JsonpInterceptor } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Observable, Subject, forkJoin } from 'rxjs';
 import { BetsService } from 'src/app/services/data-manager/bets.service';
-import { TeamService } from 'src/app/services/data-manager/team.service';
-import { ApiMatch, Livematch, Pastmatch } from 'src/app/services/interfaces/match.interface';
+import { ApiMatch, Livematch, Pastmatch, Recentmatch } from 'src/app/services/interfaces/match.interface';
 import { Utils } from 'src/app/services/utils/utils';
 
 @Component({
@@ -16,13 +13,13 @@ export class LiveRecentsComponent {
   recentMatches: any[] = [];
   liveMatches: Livematch[] = [];
   teams: any[] = [];
-  recentMatchesOne: any[] = [];
+  bsValue = new Date();
+  today!: Date;
+  public loading = false;
 
-
-  constructor(private _betsService:BetsService , private _teamService: TeamService) {}
+  constructor(private _betsService:BetsService) {}
 
   ngOnInit(): void {
-    this.getRecentsMatch();
     this.getLiveMatch();
   }
 
@@ -32,38 +29,29 @@ export class LiveRecentsComponent {
     })
   }
 
-  
-
-  getRecentsMatch() {
-    this._betsService.getRecentMatches().subscribe(dataResult => {
-      dataResult.forEach(item => {
-        this._teamService.getInfoTeam(item.radiant_team_id).subscribe(data => {
-          this.recentMatches.push(
-            { 
-              match_id: item.match_id,
-              league_name: item.league_name,
-              radiant_name: item.radiant_name,
-              dire_name:item.dire_name,
-              radiant_score: item.radiant_score,
-              dire_score: item.dire_score,
-              radiant_team_id: item.radiant_team_id,
-              dire_team_id: item.dire_team_id,
-              logo_radiant: data.logo_url,
-              logo_dire: "assets/img/tower_dire.png"
-          });
-        })
-      });
-   });
-
+  onValueChange(value: Date): void {
+    this.today = new Date();
+    this.bsValue = value;
+    var initialDate = this.bsValue.setHours(0, 0, 0).toString();
+    var finalDate = this.bsValue.setHours(23, 59, 59).toString();
+    this.getRecentMatches(initialDate, finalDate)
   }
 
-  setRecentMatches(value: any[]): void {
-    this.recentMatches = value
-    console.log(this.recentMatches);
+  getRecentMatches(initialDate: string, finalDate: string) {
+    this.loading = true;
+    return this._betsService.getRecentMatches(initialDate, finalDate).subscribe( data => {
+      this.loading = false;
+      this.mapRecentMatch(data.items)
+    })
   }
 
   setLiveMatches(value: Livematch[]): void {
     this.liveMatches = value
+  }
+
+  setRecentMatches(value: Recentmatch[]): void {
+    this.recentMatches = value
+    console.log(this.recentMatches);
   }
 
   private mapLiveMatch(serviceMatch: ApiMatch[]): void {
@@ -82,8 +70,26 @@ export class LiveRecentsComponent {
         team_id: result.team_id,
       })),
     }))
-
     this.setLiveMatches(matches)
+  }
+
+  private mapRecentMatch(serviceMatch: any[]): void {
+    const matches: Recentmatch[] = serviceMatch.map(match => ({
+      id: match.id,
+      league_name: match.tournament.name,
+      best_of: match.best_of,
+      participants: match.participants.map((participant: any) => ({
+        team_id: participant.team_id,
+        roster_id: participant.roster_id,
+        team_name: participant.team_name,
+        team_logo: Utils.getTeamLogo(participant.team_logo),
+        score: participant.score
+      })),
+      matches: match.matches.map((game: any) => ({
+        id: game.id,
+      })),
+    }))
+    this.setRecentMatches(matches)
   }
 
    titleCase(str: string) {

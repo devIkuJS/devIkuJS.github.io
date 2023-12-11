@@ -4,8 +4,7 @@ import { LiveRecentsComponent } from './live-recents/live-recents.component';
 import { UpcomingMatchesComponent } from './upcoming-matches/upcoming-matches.component';
 import { NewsComponent } from './news/news.component';
 import { RouterModule } from '@angular/router';
-
-
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    BsDatepickerModule.forRoot(),
   ],
   exports: [
     NewsComponent,

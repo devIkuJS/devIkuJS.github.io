@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable, catchError, retry, throwError, map} from 'rxjs'
-import { ApiPandaScore, OpenDota } from '../http-api';
+import { ApiPandaScore, NeptuneApi, OpenDota } from '../http-api';
 import { ApiMatch} from '../interfaces/match.interface';
 
 @Injectable({
@@ -26,18 +26,15 @@ export class BetsService {
     return this._http.get<ApiMatch[]>(url).pipe(retry(1), catchError(this.errorHandl));
   }
 
-  getRecentMatches(): Observable<any[]> {
-    //const url = OpenDota.recentMatches;
-    const url = "/api/proMatches";
-    return this._http.get<any[]>(url).pipe(map((el: any) => el.slice(0, 10)), 
-    retry(1), catchError(this.errorHandl));
-  }
-
   getTeams(): Observable<any[]> {
     //const url = OpenDota.recentMatches;
     const url = "/api/teams";
-    return this._http.get<any[]>(url).pipe(retry(1), catchError(this.errorHandl));
-     
+    return this._http.get<any[]>(url).pipe(retry(1), catchError(this.errorHandl)); 
+  }
+
+  getRecentMatches(start_after: string, start_before: string): Observable<any> {
+    const url = `${NeptuneApi.recentMatches}?start_after=${start_after}&start_before=${start_before}&game_ids=1&lifecycle=over`;
+    return this._http.get<any>(url).pipe(retry(1), catchError(this.errorHandl));
   }
   
 

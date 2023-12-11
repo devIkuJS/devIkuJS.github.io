@@ -9,6 +9,14 @@ export class Utils {
     }
   }
 
+  static getTeamLogo(team_logo: string): string {
+    return team_logo ? team_logo : "./assets/img/placeholder-team.png";
+  }
+
+  static isEmpty(obj: any): any {
+    return Object.keys(obj).length === 0;
+  }
+
   static getOpponents(opponents: Opponents[]): Opponent[] {
     var arrayAux: any[] = [
       {

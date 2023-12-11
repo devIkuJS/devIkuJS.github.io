@@ -37,8 +37,9 @@
                        <img [src]="item.opponents[0].image_url" class="logo-matches">
                        <div class="upcoming-series__label text-white fw-medium">{{item.opponents[0].name}}</div>
                        <div class="d-flex justify-center align-center text-white fw-medium">{{item.begin_at}}</div>
-                       <img [src]="item.opponents[1].image_url" class="logo-matches">
-                       <div class="upcoming-series__label text-white fw-medium">{{item.opponents[1].name}}</div>
+                       <!--<img [src]="item.opponents[1].image_url" class="logo-matches"> -->
+                       <img src="item.opponents[1].image_url" class="logo-matches">
+                       <!--<div class="upcoming-series__label text-white fw-medium">{{item.opponents[1].name}}</div> -->
                        <div class="d-flex justify-center align-center">
                           <div class="upcoming-series__best-of"> BO{{item.number_of_games}}</div>
                        </div>

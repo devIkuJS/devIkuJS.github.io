@@ -79,6 +79,78 @@
            </div>
         </div>
         <div class="tab-pane fade" id="tab-2" role="tabpanel">
+         <div class="d-flex justify-content-center">
+            <div class="row mb-3">
+               <span class="col-sm-6 col-form-label text-white">Selecciona el dia </span>
+               <div class="col-sm-6">
+                  <input type="text"
+                  class="form-control"
+                  #dp="bsDatepicker"
+                  bsDatepicker
+                  [bsValue]="bsValue"
+                  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default' }"
+                  [maxDate]="today"
+                  (bsValueChange)="onValueChange($event)"
+                  readonly>
+               </div>
+            </div>
+         </div>
+         <div *ngIf="!recentMatches?.length;else recentMatchNotEmpty">
+            <h4 class="text-center text-white"><i class="d2ce blush"></i> Todavia no existen partidas recientes registradas<i class="d2ce cheeky"></i></h4>
+         </div>
+         <ng-template #recentMatchNotEmpty>
+         <div class="series-list" *ngFor="let item of recentMatches">
+            <div class="series-list__item">
+               <div class="mb-3">
+                  <h5 class="text-white">{{item.league_name}}</h5>
+               </div>
+              
+                  <div class="series-teams series-list__teams">
+                     <div class="series-teams-item">
+                        <div class="series-teams-item__logo-container series-teams-item__logo">
+                           <img [src]="item.participants[0].team_logo" class="series-teams-item__logo" loading="lazy">
+                        </div>
+                        <span class="text-center text-white">{{item.participants[0].team_name}} {{item.participants[0].id}}</span>
+                     </div>
+                     <div class="series-teams__info-container">
+                        <div class="series-teams__primary-label">{{item.participants[0].score}} - {{item.participants[1].score}}</div>
+                        <div class="series-teams__secondary-label">BO{{item.best_of}}</div>
+                     </div>
+                     <div class="series-teams-item">
+                        <div class="series-teams-item__logo-container series-teams-item__logo">
+                           <img [src]="item.participants[1].team_logo" class="series-teams-item__logo" loading="lazy">
+                        </div>
+                        <span class="text-center text-white">{{item.participants[1].team_name}} {{item.participants[1].id}}</span>
+                     </div>
+                  </div>
+                  <ng-container *ngFor ="let match of item.matches; let i=index">
+                     <div class="mb-4 text-center" *ngIf="i < (item.participants[0].score + item.participants[1].score)">
+                        <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/series-id/{{item.id}}/teams/{{item.participants[0].team_id}}/{{item.participants[1].team_id}}">Ver detalle de partida</a>
+                     </div>
+                  </ng-container>
+
+
+
+               <!--
+               <div class="mb-4 text-center" *ngFor="let match of item.matches; let i=index">
+                  <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/series-id/{{item.id}}">Ver detalle de partida</a>
+               </div>
+            -->
+
+               <!--<div class="mb-4 text-center" *ngFor="let match of item.matches">
+                  <span>{{item.matches.length}}</span>
+                  <ng-container *ngIf="company.tradingRegion == 1">
+                     <td>{{ company.name }}</td>
+                     <td>{{ company.mseCode }}</td>
+                  </ng-container>
+                  <div></div>
+                  <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/series-id/{{item.id}}">Ver detalle de partida</a>
+               </div>
+            -->
+            </div>
+         </div>
+      </ng-template>
+         <!--
          <div class="series-list" *ngFor="let item of recentMatches">
             <div class="series-list__item">
                <div class="mb-3">
@@ -107,6 +179,7 @@
                </div>
             </div>
          </div>
+      -->
         </div>
      </div>
   </div>

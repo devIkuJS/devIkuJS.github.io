@@ -1,6 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { GameMatchService } from 'src/app/services/data-manager/game-match.service';
 import { ActivatedRoute } from '@angular/router';  
+import { DetailGameMatch, DetailSerieMatch, H2HMatch, Team } from 'src/app/services/interfaces/match.interface';
+import { Utils } from 'src/app/services/utils/utils';
+
 
 @Component({
   selector: 'app-detail-match',
@@ -8,151 +11,169 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail-match.component.css']
 })
 export class DetailMatchComponent {
-  detailMatch: any;
+
   idMatch!: number;
-  radiantPlayers: any[] = [];
-  direPlayers: any[] = [];
-  chartOptions: any = {};
+  idGame!: number;
+  idTeamHome: number = 0;
+  idTeamAway: number = 0;
+  response: any;
+  detailGameMatch: Partial<DetailGameMatch> = {};
+  detailSerieMatch: Partial<DetailSerieMatch> = {};
+  heroesImages: any[] = [];
+  playersHome: any[] =[];
+  playersAway: any[] =[];
+  listH2H: any;
+
   constructor(private _gameMatchService:GameMatchService, private route: ActivatedRoute ) {
-    this.route.params.subscribe(res => this.idMatch = Number(res["id"]));
+    this.route.params.subscribe(res => this.response = res);
+    this.idMatch = this.response.matchid;
+    this.idGame = this.response.seriesid;
   }
 
   ngOnInit(): void {
-    this.getDetailMatch();
+    this.getDetailSerieForMatch();
+    this.getDetailGameForMatch();
+    this.getHeroesImages();
+    this.getDetailH2H();
   }
 
-  getDetailMatch() {
-    const url_image_hero = "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/"
-    return this._gameMatchService.getDetailForMatch(this.idMatch).subscribe( data => {
-      this.detailMatch = data;
-      console.log(this.detailMatch.players);
-      this.detailMatch.players.forEach((obj: any) => {
-        obj.max_hero_hit.unit =  obj.max_hero_hit.unit.split("npc_dota_hero_").pop();
-        obj.heroe_img =  url_image_hero + obj.max_hero_hit.unit + ".png" ;
-        obj.heroe_icon =  url_image_hero + "icons/" + obj.max_hero_hit.unit + ".png" ;
-        if(obj.name == null) {
-          obj.name = obj.personaname
-        }
-      });
-      this.radiantPlayers = this.detailMatch.players.slice(0, 5).sort((a: any , b: any) => a.lane_role - b.lane_role);
-      this.direPlayers = this.detailMatch.players.slice(5, 10).sort((a: any , b: any) => a.lane_role - b.lane_role);
-      this.setChartOptions(this.detailMatch.radiant_xp_adv, this.detailMatch.radiant_gold_adv);
+
+  getDetailSerieForMatch() {
+    this._gameMatchService.getDetailSerieForMatch(this.idGame).subscribe(data => {
+      this.mapDetailSerieMatch(data)
     })
   }
 
-  setChartOptions(dataChartExperience: any , dataChartGold: any){
-    var dataExperience = this.generateDataPointExperience(dataChartExperience);
-    var dataGold = this.generateDataPointGold(dataChartGold);
-    var dataRadiant = this.generateDataRadiant(dataChartExperience);
-    var dataDire = this.generateDataDire(dataChartExperience);
-    this.chartOptions = {
-      animationEnabled: true,
-      title: {
-        text: "Estadisticas del juego",
-      },
-      axisX: {
-        valueFormatString: "#':00'",
-        interval: 4
-      },
-      backgroundColor: "transparent",
-      theme: "dark1",
-      toolTip: {
-        shared: true,
-        contentFormatter: (e: any) => {
-          var contentExp = "";
-          var contentGold = "";
-          var timeConentExpGold = e.entries[0].dataPoint.x;
-          if(e.entries[0].dataPoint.y >= 0) {
-            contentExp += "<span style='color:#68c3a3;'>Radiant " + e.entries[0].dataSeries.name + ":</span> " +  Math.abs(e.entries[0].dataPoint.y);
-          }else {
-            contentExp += "<span style='color:#d64541;'>Dire " + e.entries[0].dataSeries.name + ":</span> " +  Math.abs(e.entries[0].dataPoint.y);
-          }
-          if(e.entries[1].dataPoint.y >= 0) {
-            contentGold += "<span style='color:#68c3a3;'>Radiant " + e.entries[1].dataSeries.name + ":</span> " +  Math.abs(e.entries[1].dataPoint.y);
-          }else {
-            contentGold += "<span style='color:#d64541;'>Dire " + e.entries[1].dataSeries.name + ":</span> " +  Math.abs(e.entries[1].dataPoint.y);
-          }
-          return timeConentExpGold +":00" + "<br>" + contentExp + "<br>" + contentGold;
-        }
-      },
-      data: [{
-        type:"line",
-        name: "Exp",
-        showInLegend: true,
-        dataPoints: dataExperience,
-      },
-      {
-        type: "line",
-        name: "Gold",
-        color: "rgb(255,215,0)",
-        showInLegend: true,
-        dataPoints: dataGold
-      },
-      {
-        type: "rangeArea",
-        name: "Radiant",
-        markerType: "none",
-        color: "rgba(102, 187, 106, 0.2)",
-        showInLegend: true,
-        dataPoints: dataRadiant
-      },
-      {
-        type: "rangeArea",
-        name: "Dire",
-        markerType: "none",
-        showInLegend: true,
-        color: "rgba(255, 76, 76, 0.2)",
-        dataPoints: dataDire
+  private mapDetailSerieMatch(data: any): void {
+      const serieMatch: DetailSerieMatch = {
+        id: data.id,
+        league_name: `${data.tournament.name} - ${data.name}`,
+        teamHomeName: data.participants[0].team_name,
+        teamHomeLogo: Utils.getTeamLogo(data.participants[0].team_logo),
+        teamHomeScore: data.participants[0].score,
+        teamAwayName: data.participants[1].team_name,
+        teamAwayLogo: Utils.getTeamLogo(data.participants[1].team_logo),
+        teamAwayScore: data.participants[1].score,
+        teamHomePlayers: data.participants[0].players,
+        teamAwayPlayers: data.participants[1].players,
+        best_of: data.best_of
+      };
+      this.setDetailMatch(serieMatch)
+  }
+
+  setDetailMatch(value: DetailSerieMatch): void {
+    this.detailSerieMatch = value
+  }
+
+
+  getHeroesImages() {
+    this._gameMatchService.getHeroesImages().subscribe(data => {
+      this.heroesImages = data
+    })
+  }
+
+  getDetailGameForMatch() {
+    this._gameMatchService.getDetailGameForMatch(this.idMatch, this.idGame).subscribe(data => {
+      if(!this.isEmptyObject(data)) {
+        this.mapDetailGameMatch(data)
       }
-    ]
-    }
+    })
+  }
+
+  private mapDetailGameMatch(data: any): void {
+    const gameMatch: DetailGameMatch = {
+      playersHome: data.teams.home.players,
+      playersAway: data.teams.away.players,
+      idRosterHome: data.teams.home.roster.id,
+      idRosterAway: data.teams.away.roster.id
+    };
+    this.setDetailGameMatch(gameMatch)
+}
+
+  setDetailGameMatch(value: DetailGameMatch): void {
+    this.getRosters(value.idRosterHome, value.idRosterAway, value.playersHome, value.playersAway);
+    this.detailGameMatch = value
+    console.log(this.detailGameMatch);
+  }
+  
+  getRosters(idRosterHome: number, idRosterAway: number, playersHome: Team[], playersAway: Team[]) {
+    this._gameMatchService.getPlayers(idRosterHome, idRosterAway).subscribe(data => {
+      var playersDataHome = [];
+      var playersDataAway = [];
+      if(data[0].id == idRosterHome){
+        playersDataHome = data[0].players
+      } else {
+        playersDataHome = data[1].players
+      }
+      if(data[1].id == idRosterAway){
+        playersDataAway = data[1].players
+      } else {
+        playersDataAway = data[0].players
+      }
+
+      playersDataHome.map((playerHome: any) => {
+        this.heroesImages.map((hero: any) => {
+          playersHome.map((player: any) => {
+            if(player.hero.id == Number(hero.id)){
+                player.hero.url_image = hero.url_image
+                player.hero.url_icon = hero.url_icon
+                player.hero.name = hero.heroe_name
+              }
+
+              if(player.id == playerHome.id){
+                player.nick_name = playerHome.nick_name
+              }
+            })
+          })
+      })
+
+      playersDataAway.map((playerAway: any) => {
+        this.heroesImages.map((hero: any) => {
+          playersAway.map((player: any) => {
+            if(player.hero.id == Number(hero.id)){
+                player.hero.url_image = hero.url_image
+                player.hero.url_icon = hero.url_icon
+                player.hero.name = hero.heroe_name
+              }
+
+              if(player.id == playerAway.id){
+                player.nick_name = playerAway.nick_name
+              }
+            })
+          })
+      })
+    })
   }
 
   
-  generateDataPointExperience(dataChartExperience: any) {
-    var arr = []
-    for (var i = 0; i < dataChartExperience.length; i++) {
-      arr.push({
-          x: i,
-          y: dataChartExperience[i]
-      });
-    }
-    return arr;
+  getDetailH2H() {
+    this.idTeamHome = this.response.teamidhome;
+    this.idTeamAway= this.response.teamidaway;
+    this._gameMatchService.getDetailH2H(this.idTeamHome, this.idTeamAway).subscribe(response => {
+      this.mapDetailH2H(response.data.matches)
+    })
   }
 
-  generateDataPointGold(dataChartGold: any) {
-    var arr = []
-    for (var i = 0; i < dataChartGold.length; i++) {
-      arr.push({
-          x: i,
-          y: dataChartGold[i]
-      });
-    }
-    return arr;
+  private mapDetailH2H(h2hMatch: any[]): void {
+    const matches: H2HMatch[] = h2hMatch.map(match => ({
+      tournament: match.stageName,
+      endDate: match.endDate,
+      teamHomeName: match.participants[0].team_name,
+      teamHomeLogo: Utils.getTeamLogo(match.participants[0].team_logo),
+      teamHomeScore: match.participants[0].score,
+      teamAwayName: match.participants[1].team_name,
+      teamAwayLogo: Utils.getTeamLogo(match.participants[1].team_logo),
+      teamAwayScore: match.participants[1].score,
+    }))
+    this.setDetailH2H(matches)
   }
 
-  generateDataRadiant(dataChartExperience: any) {
-    var arr = []
-    let max = Math.max(...dataChartExperience);
-    for (var i = 0; i < dataChartExperience.length; i++) {
-      arr.push({
-        x: i,
-        y: [0,max],
-      });
-    }
-    return arr;
+  setDetailH2H(matches: H2HMatch[]): void {
+    this.listH2H = matches
   }
 
-  generateDataDire(dataChartExperience: any) {
-    var arr = []
-    let min = Math.min(...dataChartExperience);
-    for (var i = 0; i < dataChartExperience.length; i++) {
-      arr.push({
-        x: i,
-        y: [0,min],
-      });
-    }
-    return arr;
+  isEmptyObject(obj: any) {
+    return (obj && (Object.keys(obj).length === 0));
   }
 
 }
