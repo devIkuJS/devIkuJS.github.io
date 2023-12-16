@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "blog-dota": {
+    "devIkuJS.github.io": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "blog-dota:build:production"
+              "browserTarget": "devIkuJS.github.io:build:production"
             },
             "development": {
-              "browserTarget": "blog-dota:build:development"
+              "browserTarget": "devIkuJS.github.io:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "blog-dota:build"
+            "browserTarget": "devIkuJS.github.io:build"
           }
         },
         "test": {
