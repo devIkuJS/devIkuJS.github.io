@@ -16,10 +16,17 @@ export class BetsService {
     return this._http.get<ApiMatch[]>(url).pipe(retry(1), catchError(this.errorHandl));
   }
 
+  getUpcomingMatches(start_after: string, start_before: string): Observable<any> {
+    const url = `${NeptuneApi.recentMatches}?start_after=${start_after}&start_before=${start_before}&game_ids=1&lifecycle=upcoming`;
+    return this._http.get<any>(url).pipe(retry(1), catchError(this.errorHandl));
+  }
+
+  /*
   getUpcomingMatches(): Observable<ApiMatch[]> {
     const url = ApiPandaScore.upcomingMatches;
     return this._http.get<ApiMatch[]>(url).pipe(retry(1), catchError(this.errorHandl));
   }
+  */
 
   getLiveMatches(): Observable<ApiMatch[]> {
     const url = ApiPandaScore.liveMatches;
@@ -33,7 +40,9 @@ export class BetsService {
   }
 
   getRecentMatches(start_after: string, start_before: string): Observable<any> {
-    const url = `${NeptuneApi.recentMatches}?start_after=${start_after}&start_before=${start_before}&game_ids=1&lifecycle=over`;
+    //over-draw
+    //const url = `${NeptuneApi.recentMatches}?start_after=${start_after}&start_before=${start_before}&game_ids=1&lifecycle=over`;
+    const url = `${NeptuneApi.recentMatches}?start_after=${start_after}&start_before=${start_before}&game_ids=1`;
     return this._http.get<any>(url).pipe(retry(1), catchError(this.errorHandl));
   }
   

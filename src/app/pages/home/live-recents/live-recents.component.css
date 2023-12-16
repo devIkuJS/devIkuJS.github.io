@@ -39,10 +39,15 @@
     align-items: center;
 }
 
-@media only screen and (min-width: 624px) {
+.series-teams-item__logo-container, .series-teams-item__logo {
+    width: 100px;
+    height: 80px;
+}
+
+@media (max-width: 576px) { 
     .series-teams-item__logo-container, .series-teams-item__logo {
-        width: 128px;
-        height: 72px;
+        width: 80px;
+        height: 80px;
     }
 }
 

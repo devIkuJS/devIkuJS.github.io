@@ -1,6 +1,8 @@
 import { Opponent, Opponents, Stream } from "../interfaces/match.interface"
 
 export class Utils {
+  static teamNameDefault = "TBD";
+  static teamLogoDefault = "./assets/img/placeholder-team.png";
   static getStream(streamUrl: Stream[]): string {
     if (!streamUrl.length) {
       return ""
@@ -10,7 +12,7 @@ export class Utils {
   }
 
   static getTeamLogo(team_logo: string): string {
-    return team_logo ? team_logo : "./assets/img/placeholder-team.png";
+    return team_logo ? team_logo : Utils.teamLogoDefault;
   }
 
   static isEmpty(obj: any): any {

@@ -50,8 +50,9 @@ export class LiveRecentsComponent {
   }
 
   setRecentMatches(value: Recentmatch[]): void {
-    this.recentMatches = value
-    console.log(this.recentMatches);
+    this.recentMatches = value.filter(obj => {
+      return obj.lifecycle != "upcoming" && obj.lifecycle != "live";
+    });
   }
 
   private mapLiveMatch(serviceMatch: ApiMatch[]): void {
@@ -76,6 +77,7 @@ export class LiveRecentsComponent {
   private mapRecentMatch(serviceMatch: any[]): void {
     const matches: Recentmatch[] = serviceMatch.map(match => ({
       id: match.id,
+      lifecycle: match.lifecycle,
       league_name: match.tournament.name,
       best_of: match.best_of,
       participants: match.participants.map((participant: any) => ({

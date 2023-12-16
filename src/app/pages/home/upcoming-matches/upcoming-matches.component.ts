@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BetsService } from 'src/app/services/data-manager/bets.service';
-import { ApiMatch, Match, StatusGame, Stream } from 'src/app/services/interfaces/match.interface';
+import { ApiMatch, Match , TopMatch } from 'src/app/services/interfaces/match.interface';
 import { Utils } from 'src/app/services/utils/utils';
 
 @Component({
@@ -10,34 +10,46 @@ import { Utils } from 'src/app/services/utils/utils';
 })
 export class UpcomingMatchesComponent implements OnInit {
 
-  topMatch: Match[] = [];
-  upComingMatches: Match[] = [];
+  upComingMatchesToday: Match[] = [];
+  upComingMatchesTomorrow: Match[] = [];
+  today = new Date();
+  tomorrow = new Date(this.today)
 
   constructor(private _betsService:BetsService ) {}
 
   ngOnInit(): void {
-    this.getTopMatch();
-    this.getUpcomingMatches();
+    this.setTimeDate();
   }
 
-  getTopMatch() {
-    return this._betsService.getTopMatch().subscribe( data => {
-      this.mapMatch(data)
+  setTimeDate() {
+    this.tomorrow.setDate(this.today.getDate() + 1)
+    var initialTodayDate = this.today.setHours(0, 0, 0).toString();
+    var finalTodayDate = this.today.setHours(23, 59, 59).toString();
+    var initialTomorrowDate = this.tomorrow.setHours(0, 0, 0).toString();
+    var finalTomorrowDate = this.tomorrow.setHours(23, 59, 59).toString();
+    this.getUpcomingMatchesToday(initialTodayDate, finalTodayDate);
+    this.getUpcomingMatchesTomorrow(initialTomorrowDate, finalTomorrowDate);
+  }
+
+
+  getUpcomingMatchesToday(initialDate: string, finalDate: string) {
+    return this._betsService.getUpcomingMatches(initialDate, finalDate).subscribe( data => {
+      this.mapUpcomingMatchesToday(data.items)
     })
   }
 
-  getUpcomingMatches() {
-    return this._betsService.getUpcomingMatches().subscribe( data => {
-      this.mapUpcomingMatches(data)
+  getUpcomingMatchesTomorrow(initialTomorrowDate: string, finalTomorrowDate: string) {
+    return this._betsService.getUpcomingMatches(initialTomorrowDate, finalTomorrowDate).subscribe( data => {
+      this.mapUpcomingMatchesTomorrow(data.items)
     })
   }
 
-  setMatches(value: Match[]): void {
-    this.topMatch = value
+  setUpcomingMatchesToday(value: Match[]): void {
+    this.upComingMatchesToday = value
   }
 
-  setUpcomingMatches(value: Match[]): void {
-    this.upComingMatches = value
+  setUpcomingMatchesTomorrow(value: Match[]): void {
+    this.upComingMatchesTomorrow = value
   }
 
   private diffMinsToComingGame(begin_at: string): string {
@@ -50,35 +62,58 @@ export class UpcomingMatchesComponent implements OnInit {
     return  `${mensajeHrs} ${diffMins} min`
   }
 
-  private convertToHour(begin_at: string): string {
+  convertToHour(begin_at: string): string {
     var hourGame = new Date(begin_at);
     return  `${hourGame.getHours().toString()}:00`
   }
 
-  private mapMatch(serviceMatch: ApiMatch[]): void {
+
+  private mapUpcomingMatchesToday(serviceMatch: any[]): void {
     const matches: Match[] = serviceMatch.map(match => ({
       id: match.id,
-      league_name: match.league.name,
-      begin_at: this.diffMinsToComingGame(match.begin_at),
-      opponents: Utils.getOpponents(match.opponents),
-      stream_url: Utils.getStream(match.streams_list),
-      number_of_games: String(match.number_of_games)
+      league_name: match.tournament.name,
+      hour_coming_soon: this.diffMinsToComingGame(match.start_date),
+      begin_at: this.convertToHour(match.start_date),
+      best_of: match.best_of,
+      participants: match.participants.map((participant: any) => ({
+        team_name: participant.team_name,
+        team_logo:participant.team_logo
+      }))
     }))
-
-    this.setMatches(matches)
+    this.setUpcomingMatchesToday(matches)
   }
 
-  private mapUpcomingMatches(serviceMatch: ApiMatch[]): void {
+  private mapUpcomingMatchesTomorrow(serviceMatch: any[]): void {
     const matches: Match[] = serviceMatch.map(match => ({
       id: match.id,
-      league_name: match.league.name,
-      begin_at: this.convertToHour(match.begin_at),
-      opponents: Utils.getOpponents(match.opponents),
-      stream_url: Utils.getStream(match.streams_list),
-      number_of_games: String(match.number_of_games)
+      league_name: match.tournament.name,
+      hour_coming_soon: this.diffMinsToComingGame(match.start_date),
+      begin_at: this.convertToHour(match.start_date),
+      best_of: match.best_of,
+      participants: this.validateParticipants(match.participants)
     }))
+    this.setUpcomingMatchesTomorrow(matches)
+  }
 
-    this.setUpcomingMatches(matches)
+  private validateParticipants(participants: any){
+    var arrayParticipants: any = [];
+    if(participants.length == 0){
+      arrayParticipants = [
+        {teamHomeName: Utils.teamNameDefault, teamHomeLogo: Utils.teamLogoDefault},
+        {teamAwayName: Utils.teamNameDefault, teamAwayLogo: Utils.teamLogoDefault},
+      ];
+    } else if(participants.length == 1) {
+      arrayParticipants = [
+        {teamHomeName: participants[0].team_name, teamHomeLogo: Utils.getTeamLogo(participants[0].team_logo)},
+        {teamAwayName: Utils.teamNameDefault, teamAwayLogo: Utils.teamLogoDefault},
+      ];
+    }else {
+      arrayParticipants = [
+        {teamHomeName: participants[0].team_name, teamHomeLogo: Utils.getTeamLogo(participants[0].team_logo)},
+        {teamAwayName: participants[1].team_name, teamAwayLogo: participants[1].team_logo},
+      ];
+    }
+    return arrayParticipants
   }
 
 }

@@ -16,6 +16,7 @@ export class DetailMatchComponent {
   idGame!: number;
   idTeamHome: number = 0;
   idTeamAway: number = 0;
+  matchIndex: number = 0;
   response: any;
   detailGameMatch: Partial<DetailGameMatch> = {};
   detailSerieMatch: Partial<DetailSerieMatch> = {};
@@ -28,6 +29,7 @@ export class DetailMatchComponent {
     this.route.params.subscribe(res => this.response = res);
     this.idMatch = this.response.matchid;
     this.idGame = this.response.seriesid;
+    this.matchIndex = this.response.matchindex;
   }
 
   ngOnInit(): void {

@@ -1,5 +1,61 @@
 <div class="row g-4">
   <div class="col-sm-6 col-lg-12">
+   <div *ngIf="!upComingMatchesToday?.length;else topMatchNotEmpty">
+      <div class="card" *ngFor="let item of upComingMatchesTomorrow; let first = first">
+         <div *ngIf="first">
+            <div class="card-header d-flex justify-content-between border-0">
+               <h5 class="card-title">Partida Top</h5>
+               <span style="padding-top:2.5px;color:#fff;">En {{item.hour_coming_soon}}</span>
+            </div>
+            <div class="card-body">
+             <div class="info-teams-container">
+                <div class="info-teams-item">
+                   <img [src]="item.participants[0].teamHomeLogo" class="info-team-logo" loading="lazy">
+                   <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[0].teamHomeName}}</p>
+                   <a class="btn btn-warning mt-3 fw-semibold" href="#"> Ver cuotas</a>
+                </div>
+                <div class="info-teams-result">
+                   <a class="btn-vs" href="javascript:void(0)"> VS </a>
+                </div>
+                <div class="info-teams-item">
+                   <img [src]="item.participants[1].teamAwayLogo" class="info-team-logo" loading="lazy">
+                   <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[1].teamAwayName}}</p>
+                </div>
+             </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <ng-template #topMatchNotEmpty>
+      <div class="card" *ngFor="let item of upComingMatchesToday; let first = first">
+         <div *ngIf="first">
+            <div class="card-header d-flex justify-content-between border-0">
+               <h5 class="card-title">Partida Top</h5>
+               <span style="padding-top:2.5px;color:#fff;">En {{item.hour_coming_soon}}</span>
+            </div>
+            <div class="card-body">
+            <div class="upcoming-series__championship text-uppercase mb-2">{{item.league_name}}</div>
+             <div class="info-teams-container">
+                <div class="info-teams-item">
+                   <img [src]="item.participants[0].team_logo" class="info-team-logo" loading="lazy">
+                   <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[0].team_name}}</p>
+                   <a class="btn btn-warning mt-3 fw-semibold" href="https://pe.betano.com/sport/esports/campeonatos/dota-2/189391/" target="_blank"> Ver cuotas</a>
+                </div>
+                <div class="info-teams-result">
+                   <a class="btn-vs" href="javascript:void(0)"> VS </a>
+                </div>
+                <div class="info-teams-item">
+                   <img [src]="item.participants[1].team_logo" class="info-team-logo" loading="lazy">
+                   <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[1].team_name}}</p>
+                   <a href="javascript:void(0)" class="mt-4"><img src="assets/img/betano-logo.png" class="betano-logo" loading="lazy"></a>
+                </div>
+             </div>
+            </div>
+         </div>
+      </div>
+   </ng-template>
+
+   <!--
      <div class="card" *ngFor="let item of topMatch">
         <div class="card-header d-flex justify-content-between border-0">
            <h5 class="card-title">Partida Top</h5>
@@ -19,11 +75,11 @@
                <img [src]="item.opponents[1].image_url" class="info-team-logo" loading="lazy">
                <p class="mb-0 mt-3 small text-white name-team-width">{{item.opponents[1].name}}</p>
                <a class="btn btn-outline-light mt-3" href="https://gg.bet/es/dota2" target="_blank">Ver</a>
-              <!-- <a class="btn btn-outline-light mt-3" [routerLink]="['/detalle-partida', item.id]"> Ver </a> -->
             </div>
          </div>
         </div>
      </div>
+   -->
      <div class="col-sm-6 col-lg-12 mt-3">
         <div class="card">
            <div class="card-header d-sm-flex justify-content-between align-items-center border-0">
@@ -31,21 +87,36 @@
            </div>
            <div class="card-body pt-0">
               <div class="v-block__content--with-margin upcoming-series__body text-body-2">
-                 <div class="upcoming-series__item" *ngFor="let item of upComingMatches">
-                    <div class="upcoming-series__series">
-                       <div class="upcoming-series__championship text-uppercase">{{item.league_name}}</div>
-                       <img [src]="item.opponents[0].image_url" class="logo-matches">
-                       <div class="upcoming-series__label text-white fw-medium">{{item.opponents[0].name}}</div>
-                       <div class="d-flex justify-center align-center text-white fw-medium">{{item.begin_at}}</div>
-                       <!--<img [src]="item.opponents[1].image_url" class="logo-matches"> -->
-                       <img src="item.opponents[1].image_url" class="logo-matches">
-                       <!--<div class="upcoming-series__label text-white fw-medium">{{item.opponents[1].name}}</div> -->
-                       <div class="d-flex justify-center align-center">
-                          <div class="upcoming-series__best-of"> BO{{item.number_of_games}}</div>
-                       </div>
-                    </div>
-                 </div>
-              </div>
+               <div *ngIf="!upComingMatchesToday?.length;else upcomingMatchesNotEmpty">
+                  <div class="upcoming-series__item" *ngFor="let item of upComingMatchesTomorrow">
+                     <div class="upcoming-series__series">
+                        <div class="upcoming-series__championship text-uppercase">{{item.league_name}}</div>
+                        <img [src]="item.participants[0].teamHomeLogo" class="logo-matches">
+                        <div class="upcoming-series__label text-white fw-medium">{{item.participants[0].teamHomeName}}</div>
+                        <div class="d-flex justify-center align-center text-white fw-medium">{{item.begin_at}}</div>
+                        <img [src]="item.participants[1].teamAwayLogo" class="logo-matches">
+                        <div class="upcoming-series__label text-white fw-medium">{{item.participants[1].teamAwayName}}</div>
+                        <div class="d-flex justify-center align-center">
+                           <div class="upcoming-series__best-of"> BO{{item.best_of}}</div>
+                        </div>
+                  </div>
+               </div>
+               </div>
+               <ng-template #upcomingMatchesNotEmpty>
+                  <div class="upcoming-series__item" *ngFor="let item of upComingMatchesToday">
+                     <div class="upcoming-series__series">
+                        <div class="upcoming-series__championship text-uppercase">{{item.league_name}}</div>
+                        <img [src]="item.participants[0].team_logo" class="logo-matches">
+                        <div class="upcoming-series__label text-white fw-medium">{{item.participants[0].team_name}}</div>
+                        <div class="d-flex justify-center align-center text-white fw-medium">{{item.begin_at}}</div>
+                        <img [src]="item.participants[1].team_logo" class="logo-matches">
+                        <div class="upcoming-series__label text-white fw-medium">{{item.participants[1].team_name}}</div>
+                        <div class="d-flex justify-center align-center">
+                           <div class="upcoming-series__best-of"> BO{{item.best_of}}</div>
+                        </div>
+                  </div>
+               </div>
+               </ng-template>
            </div>
         </div>
      </div>

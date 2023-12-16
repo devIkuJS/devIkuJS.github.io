@@ -46,6 +46,15 @@ export interface Results {
 
 export interface Match {
     id: number; 
+    hour_coming_soon: string;
+    league_name: string;
+    begin_at: string;
+    best_of: string;
+    participants: any;
+}
+
+export interface TopMatch {
+    id: number; 
     league_name: string;
     begin_at: string;
     opponents: Opponent[];
@@ -74,6 +83,7 @@ export interface Livematch {
 
 export interface Recentmatch {
     id: number; 
+    lifecycle: string;
     league_name: Tournament;
     best_of: number;
     participants: Participant[];

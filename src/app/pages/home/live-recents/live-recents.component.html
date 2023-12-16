@@ -125,7 +125,7 @@
                   </div>
                   <ng-container *ngFor ="let match of item.matches; let i=index">
                      <div class="mb-4 text-center" *ngIf="i < (item.participants[0].score + item.participants[1].score)">
-                        <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/series-id/{{item.id}}/teams/{{item.participants[0].team_id}}/{{item.participants[1].team_id}}">Ver detalle de partida</a>
+                        <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/{{i+1}}/series-id/{{item.id}}/teams/{{item.participants[0].team_id}}/{{item.participants[1].team_id}}">Ver Partida {{i+1}}</a>
                      </div>
                   </ng-container>
 
