@@ -21,16 +21,12 @@ export class BetsService {
     return this._http.get<any>(url).pipe(retry(1), catchError(this.errorHandl));
   }
 
-  /*
-  getUpcomingMatches(): Observable<ApiMatch[]> {
-    const url = ApiPandaScore.upcomingMatches;
+  getLiveMatches(start_after: string, start_before: string): Observable<any> {
+    const url = `${NeptuneApi.liveMatches}?start_after=${start_after}&start_before=${start_before}`;
+    return this._http.get<any>(url).pipe(retry(1), catchError(this.errorHandl));
+    /*const url = ApiPandaScore.liveMatches;
     return this._http.get<ApiMatch[]>(url).pipe(retry(1), catchError(this.errorHandl));
-  }
-  */
-
-  getLiveMatches(): Observable<ApiMatch[]> {
-    const url = ApiPandaScore.liveMatches;
-    return this._http.get<ApiMatch[]>(url).pipe(retry(1), catchError(this.errorHandl));
+    */
   }
 
   getTeams(): Observable<any[]> {

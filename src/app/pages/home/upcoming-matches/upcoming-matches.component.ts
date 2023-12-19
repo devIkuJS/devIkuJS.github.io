@@ -75,10 +75,7 @@ export class UpcomingMatchesComponent implements OnInit {
       hour_coming_soon: this.diffMinsToComingGame(match.start_date),
       begin_at: this.convertToHour(match.start_date),
       best_of: match.best_of,
-      participants: match.participants.map((participant: any) => ({
-        team_name: participant.team_name,
-        team_logo:participant.team_logo
-      }))
+      participants: this.validateParticipants(match.participants)
     }))
     this.setUpcomingMatchesToday(matches)
   }

@@ -11,10 +11,10 @@ import { Utils } from 'src/app/services/utils/utils';
 export class LiveRecentsComponent {
 
   recentMatches: any[] = [];
-  liveMatches: Livematch[] = [];
+  liveMatches: any[] = [];
   teams: any[] = [];
   bsValue = new Date();
-  today!: Date;
+  today = new Date();
   public loading = false;
 
   constructor(private _betsService:BetsService) {}
@@ -24,8 +24,13 @@ export class LiveRecentsComponent {
   }
 
   getLiveMatch() {
-    return this._betsService.getLiveMatches().subscribe( data => {
-      this.mapLiveMatch(data)
+    var initialDate = this.today.setHours(0, 0, 0).toString();
+    var finalDate = this.today.setHours(23, 59, 59).toString();
+    return this._betsService.getLiveMatches(initialDate, finalDate).subscribe( data => {
+      data.items = data.items.filter((obj: any) => {
+        return obj.lifecycle == "live" && obj.game.id == 1;
+      });
+      this.mapLiveMatch(data.items)
     })
   }
 
@@ -45,7 +50,7 @@ export class LiveRecentsComponent {
     })
   }
 
-  setLiveMatches(value: Livematch[]): void {
+  setLiveMatches(value: Recentmatch[]): void {
     this.liveMatches = value
   }
 
@@ -55,20 +60,21 @@ export class LiveRecentsComponent {
     });
   }
 
-  private mapLiveMatch(serviceMatch: ApiMatch[]): void {
-    const matches: Livematch[] = serviceMatch.map(match => ({
+  private mapLiveMatch(serviceMatch: any[]): void {
+    const matches: Recentmatch[] = serviceMatch.map(match => ({
       id: match.id,
-      league_name: `${match.league.name} ${match.serie.full_name}`,
-      opponents: match.opponents.map(opponent => ({
-        id: opponent.opponent.id,
-        name: this.titleCase(opponent.opponent.name),
-        image_url: opponent.opponent.image_url
+      lifecycle: match.lifecycle,
+      league_name: match.tournament.name,
+      best_of: match.best_of,
+      participants: match.participants.map((participant: any) => ({
+        team_id: participant.team_id,
+        roster_id: participant.roster_id,
+        team_name: participant.team_name,
+        team_logo: Utils.getTeamLogo(participant.team_logo),
+        score: participant.score
       })),
-      stream_url: Utils.getStream(match.streams_list),
-      number_of_games: String(match.number_of_games),
-      results: match.results.map(result => ({
-        score: result.score,
-        team_id: result.team_id,
+      matches: match.matches.map((game: any) => ({
+        id: game.id,
       })),
     }))
     this.setLiveMatches(matches)
