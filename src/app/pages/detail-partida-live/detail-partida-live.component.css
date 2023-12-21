@@ -1,0 +1,209 @@
+.hero-icons {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.radiant-safe img, .radiant-mid img, .radiant-off img, .radiant-jungle img {
+    filter: drop-shadow(rgb(102, 187, 106) 0px 0px 5px);
+}
+
+.hero-icons img {
+    width: 26px;
+}
+
+.radiant-mid {
+    left: 130px;
+    top: 155px;
+}
+
+.radiant-off {
+    flex-flow: column wrap;
+    left: 10px;
+    top: 75px;
+    width: 26px;
+}
+
+.radiant-safe {
+    bottom: 10px;
+    flex-direction: row-reverse;
+    right: 30px;
+}
+
+.dire-safe {
+    left: 20px;
+    top: 10px;
+}
+
+.dire-mid {
+    flex-direction: row-reverse;
+    right: 145px;
+    top: 125px;
+}
+
+.dire-off {
+    bottom: 70px;
+    flex-flow: column-reverse wrap;
+    right: 10px;
+    width: 26px;
+}
+
+.teams{
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.left {
+    align-items: center;
+    display: flex;
+}
+
+.text-bo{
+    font-size:20px;
+    color: var(--bs-card-title-color);
+    font-weight:bold;
+}
+
+.team-detail-logo{
+    /*max-width: none;
+    width: 50px;
+    height: 30px;
+    */
+}
+
+.teams .teams-item {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.teams .teams-item .image {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.text-teams{
+    font-size:20px;
+    color:#fff;
+    font-weight:bold;
+    text-align: center;
+}
+
+.text-score{
+    flex-shrink: 0;
+}
+
+.text-tournament, table th {
+    color: var(--bs-card-title-color);
+}
+
+table {
+    text-align: center;
+}
+table td {
+    color: #fff;
+}
+
+
+.stats-block__col:first-child {
+    text-align: left;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.block-player span {
+    display: block;
+}
+
+.block-player strong , .block-player span {
+    padding-left: 10px;
+}
+
+.stats-block--photos .stats-block__content {
+    padding: 4px 2px;
+}
+.dflex {
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.stats-block__photo {
+    width: 20%;
+    padding: 2px;
+}
+
+.stats-block__photo picture {
+    display: block;
+    position: relative;
+    text-align: center;
+}
+
+.stats-block__photo picture img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+@media (max-width: 576px) { 
+    .text-bo, .text-teams{
+        font-size:15px;
+    }
+
+    .text-nickname{
+        font-size: 13px;
+    }
+
+    .card-team{
+        padding: 0.95rem 0.5rem;
+    }
+
+    .teams, .teams .teams-item{
+        gap: 5px;
+    }
+
+    .block-player{
+        font-size: 10px;
+    }
+
+    .block-player strong , .block-player span {
+        padding-left: 0px;
+    }
+
+    .hero-icon-img {
+        max-width: none;
+    }
+
+}
+
+.responsive-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 60px; overflow: hidden;
+}
+
+.responsive-video iframe,
+.responsive-video object,
+.responsive-video embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+

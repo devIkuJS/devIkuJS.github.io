@@ -14,64 +14,47 @@
 
               </div>
               <ng-template #liveMatchNotEmpty>
-               <!--
                  <div *ngFor="let item of liveMatches">
                     <h4 class="text-center text-white container-recent">{{item.league_name}}</h4>
                     <div class="row mb-3">
                      <div class="col-lg-6">
                         <div class="hstack gap-5" style="display: flex;justify-content: center;">
                            <div class="overflow-hidden text-center">
-                              <img [src]="item.opponents[0].image_url" loading="lazy" style="width: 122px;height: 110px;">
-                              <p class="mb-0 mt-3 small text-white name-team-width">{{item.opponents[0].name}}</p>
+                              <img [src]="item.participants[0].team_logo" loading="lazy" style="width: 122px;height: 110px;">
+                              <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[0].team_name}}</p>
                            </div>
                            <div class="series-teams__info-container">
-                              <div class="series-teams__primary-label">{{item.results[0].score}} - {{item.results[1].score}}</div>
-                              <div class="series-teams__secondary-label">BO{{item.number_of_games}}</div>
+                              <div class="series-teams__primary-label">{{item.participants[0].score}} - {{item.participants[1].score}}</div>
+                              <div class="series-teams__secondary-label">BO{{item.best_of}}</div>
                            </div>
                            <div class="overflow-hidden text-center">
-                              <img [src]="item.opponents[1].image_url" style="width: 122px;height: 110px;" loading="lazy">
-                              <p class="mb-0 mt-3 small text-white name-team-width" >{{item.opponents[1].name}}</p>
+                              <img [src]="item.participants[1].team_logo" style="width: 122px;height: 110px;" loading="lazy">
+                              <p class="mb-0 mt-3 small text-white name-team-width" >{{item.participants[1].team_name}}</p>
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-6">
+                     <div class="col-lg-6 m-auto">
                         <div>
-                           <a class="series-list__match" alt="Map 1" routerLink="/detalle-partida/{{item.id}}">
-                              <div class="series-list__match-map-number">
-                                 <span class="text-body-2">Mapa 1</span>
-                              </div>
-                              <div class="series-list__winner series-list__winner--team1">
-                              </div>
-                              <div class="series-list__winner series-list__winner--team2">
-                                 <img src="https://hawk.live/build/assets/winner-crown-a3cd9c5d.png" width="20" height="20" loading="lazy">
-                              </div>
-                              <div class="series-list__vs">
-                                 <i class="v-icon notranslate v-theme--light v-icon--size-default series-list__vs-icon" aria-hidden="true">
-                                    <svg class="v-icon__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true">
-                                       <path d="M19,13H5V11H19V13Z"></path>
+                           <a class="series-list__match" alt="Map 1">
+                              <div class="series-list__match-map-number" routerLink="/partida-en-vivo/{{item.id}}/teams/{{item.participants[0].team_id}}/{{item.participants[1].team_id}}">
+                                 <i class="v-icon notranslate v-icon-attributes" aria-hidden="true">
+                                    <svg class="v-icon__svg" fill="currentColor" style="color:red;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                                       <path d="M19,12C19,15.86 15.86,19 12,19C8.14,19 5,15.86 5,12C5,8.14 8.14,5 12,5C15.86,5 19,8.14 19,12Z"></path>
                                     </svg>
                                  </i>
-                              </div>
+                                 <span class="text-body-2">Ver Partida - Hora de inicio 00:23</span></div>
                            </a>
                         </div>
                      </div>
-
-                    </div>
-
-                    <div class="mb-4">
-                     <div class="video-responsive">
-                        <iframe src="https://www.youtube.com/embed/6OBWTCdner8?si=Enhc5wZE8a0nrPlt?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        </div>
                     </div>
                  </div>
-               -->
               </ng-template>
            </div>
         </div>
         <div class="tab-pane fade" id="tab-2" role="tabpanel">
          <div class="d-flex justify-content-center">
             <div class="row mb-3">
-               <span class="col-sm-6 col-form-label text-white">Selecciona el dia </span>
+               <span class="col-sm-6 col-form-label text-white">Selecciona el día </span>
                <div class="col-sm-6">
                   <input type="text"
                   class="form-control"
@@ -86,7 +69,7 @@
             </div>
          </div>
          <div *ngIf="!recentMatches?.length;else recentMatchNotEmpty">
-            <h4 class="text-center text-white"><i class="d2ce blush"></i> Todavia no existen partidas recientes registradas<i class="d2ce cheeky"></i></h4>
+            <h4 class="text-center text-white"><i class="d2ce blush"></i> Todavía no existen partidas recientes registradas<i class="d2ce cheeky"></i></h4>
          </div>
          <ng-template #recentMatchNotEmpty>
          <div class="series-list" *ngFor="let item of recentMatches">
@@ -118,58 +101,9 @@
                         <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/{{i+1}}/series-id/{{item.id}}/teams/{{item.participants[0].team_id}}/{{item.participants[1].team_id}}">Ver Partida {{i+1}}</a>
                      </div>
                   </ng-container>
-
-
-
-               <!--
-               <div class="mb-4 text-center" *ngFor="let match of item.matches; let i=index">
-                  <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/series-id/{{item.id}}">Ver detalle de partida</a>
-               </div>
-            -->
-
-               <!--<div class="mb-4 text-center" *ngFor="let match of item.matches">
-                  <span>{{item.matches.length}}</span>
-                  <ng-container *ngIf="company.tradingRegion == 1">
-                     <td>{{ company.name }}</td>
-                     <td>{{ company.mseCode }}</td>
-                  </ng-container>
-                  <div></div>
-                  <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/series-id/{{item.id}}">Ver detalle de partida</a>
-               </div>
-            -->
             </div>
          </div>
       </ng-template>
-         <!--
-         <div class="series-list" *ngFor="let item of recentMatches">
-            <div class="series-list__item">
-               <div class="mb-3">
-                  <h5 class="text-white">{{item.league_name}}</h5>
-               </div>
-               <div class="series-teams series-list__teams">
-                  <div class="series-teams-item">
-                     <div class="series-teams-item__logo-container series-teams-item__logo">
-                        <img [src]="item.logo_radiant" class="series-teams-item__logo" loading="lazy">
-                     </div>
-                     <span class="text-center text-white">{{item.radiant_name}}</span>
-                  </div>
-                  <div class="series-teams__info-container">
-                     <div class="series-teams__primary-label">{{item.radiant_score}} - {{item.dire_score}}</div>
-                     <div class="series-teams__secondary-label">BO3</div>
-                  </div>
-                  <div class="series-teams-item">
-                     <div class="series-teams-item__logo-container series-teams-item__logo">
-                        <img [src]="item.logo_dire" class="series-teams-item__logo" loading="lazy">
-                     </div>
-                     <span class="text-center text-white">{{item.dire_name}}</span>
-                  </div>
-               </div>
-               <div class="mb-4 text-center">
-                  <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{item.match_id}}">Ver detalle de partida</a>
-               </div>
-            </div>
-         </div>
-      -->
         </div>
      </div>
   </div>

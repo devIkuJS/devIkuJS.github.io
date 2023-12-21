@@ -22,8 +22,10 @@ export class BetsService {
   }
 
   getLiveMatches(start_after: string, start_before: string): Observable<any> {
-    const url = `${NeptuneApi.liveMatches}?start_after=${start_after}&start_before=${start_before}`;
+    return this._http.get<any>('./assets/data/live-matches.json');
+    /*const url = `${NeptuneApi.liveMatches}?start_after=${start_after}&start_before=${start_before}`;
     return this._http.get<any>(url).pipe(retry(1), catchError(this.errorHandl));
+    */
     /*const url = ApiPandaScore.liveMatches;
     return this._http.get<ApiMatch[]>(url).pipe(retry(1), catchError(this.errorHandl));
     */

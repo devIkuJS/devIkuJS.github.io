@@ -107,7 +107,7 @@ export class UpcomingMatchesComponent implements OnInit {
     }else {
       arrayParticipants = [
         {teamHomeName: participants[0].team_name, teamHomeLogo: Utils.getTeamLogo(participants[0].team_logo)},
-        {teamAwayName: participants[1].team_name, teamAwayLogo: participants[1].team_logo},
+        {teamAwayName: participants[1].team_name, teamAwayLogo: Utils.getTeamLogo(participants[1].team_logo)},
       ];
     }
     return arrayParticipants

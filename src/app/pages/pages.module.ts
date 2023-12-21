@@ -5,26 +5,29 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { DetailMatchComponent } from './detail-match/detail-match.component';
-import { DetailMatchModule } from './detail-match/detail-match.module';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { DetailPartidaLiveComponent } from './detail-partida-live/detail-partida-live.component';
+import { SafePipe } from '../services/pipes/safe-pipe.pipe';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    DetailMatchComponent
+    DetailMatchComponent,
+    DetailPartidaLiveComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,
     SharedModule,
     HomeModule,
-    DetailMatchModule,
     CanvasJSAngularChartsModule
   ],
   exports: [
     HomeComponent,
-    DetailMatchComponent
+    DetailMatchComponent,
+    DetailPartidaLiveComponent
   ]
 })
 export class PagesModule { }

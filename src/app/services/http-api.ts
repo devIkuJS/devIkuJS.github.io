@@ -12,6 +12,7 @@ export class OpenDota {
 
 export class NeptuneApi {
     static liveMatches = `${NEPTUNE_CONFIG}series/grouped/all-and-live`;
+    static realTime = `${NEPTUNE_CONFIG}rosters?ids=`;
     static recentMatches = `${NEPTUNE_CONFIG}series/grouped/all`;
     static detailSerieMatch = `${NEPTUNE_CONFIG}series/`;
     static detailGameMatch = `${NEPTUNE_CONFIG}matches/`;

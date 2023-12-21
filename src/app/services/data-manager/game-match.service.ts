@@ -33,6 +33,12 @@ export class GameMatchService {
   getHeroesImages(): Observable<any[]> {
     return this._http.get<any[]>('./assets/data/heroes.json');
   }
+
+  getRealTime(idGame: number): Observable<any> {
+    const url = `${NeptuneApi.detailGameMatch}${idGame}/summary/real-time`;
+    return this._http.get<any>(url).pipe(retry(1), catchError(this.errorHandl));
+  }
+
   
 
  // Error handling

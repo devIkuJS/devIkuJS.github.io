@@ -180,10 +180,11 @@
 }
 
 .series-list__match-map-number {
-    grid-column: 1/2;
+    grid-column: 1/8;
     display: flex;
     align-items: center;
     color: white;
+    margin: auto;
 }
 
 .series-list__winner--team1 {
@@ -299,6 +300,12 @@
     font-size: calc(1 * 1.5em);
 }
 
+.v-icon-attributes {
+    font-size: 16px; 
+    height: 16px; width: 16px;
+    margin-right: 10px;
+}
+
 .v-icon {
     --v-icon-size-multiplier: 1;
     align-items: center;
@@ -318,14 +325,12 @@
 @media only screen and (min-width: 360px) and (max-width: 623px) {
     .series-list__match {
         grid-template-columns: minmax(0px,1fr) 24px 210px;
-        grid-template-rows: 24px 24px;
-        grid-gap: 4px;
     }
 }
 
 @media only screen and (max-width: 623px) {
     .series-list__match-map-number {
-        grid-column: 1/2;
+        grid-column: 1/4;
         grid-row: 1/2;
     }
 }

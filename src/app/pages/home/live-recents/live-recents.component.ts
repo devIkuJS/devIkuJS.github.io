@@ -27,10 +27,13 @@ export class LiveRecentsComponent {
     var initialDate = this.today.setHours(0, 0, 0).toString();
     var finalDate = this.today.setHours(23, 59, 59).toString();
     return this._betsService.getLiveMatches(initialDate, finalDate).subscribe( data => {
-      data.items = data.items.filter((obj: any) => {
+      /*data.items = data.items.filter((obj: any) => {
         return obj.lifecycle == "live" && obj.game.id == 1;
       });
+      console.log(data.items);
       this.mapLiveMatch(data.items)
+      */
+      this.mapLiveMatch(data)
     })
   }
 
@@ -50,7 +53,7 @@ export class LiveRecentsComponent {
     })
   }
 
-  setLiveMatches(value: Recentmatch[]): void {
+  setLiveMatches(value: Livematch[]): void {
     this.liveMatches = value
   }
 
@@ -61,7 +64,7 @@ export class LiveRecentsComponent {
   }
 
   private mapLiveMatch(serviceMatch: any[]): void {
-    const matches: Recentmatch[] = serviceMatch.map(match => ({
+    const matches: Livematch[] = serviceMatch.map(match => ({
       id: match.id,
       lifecycle: match.lifecycle,
       league_name: match.tournament.name,
@@ -71,12 +74,13 @@ export class LiveRecentsComponent {
         roster_id: participant.roster_id,
         team_name: participant.team_name,
         team_logo: Utils.getTeamLogo(participant.team_logo),
-        score: participant.score
+        score: Utils.validateIfScoreNull(participant.score)
       })),
       matches: match.matches.map((game: any) => ({
         id: game.id,
       })),
     }))
+    console.log("MATCHECITO", matches);
     this.setLiveMatches(matches)
   }
 

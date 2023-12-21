@@ -15,6 +15,10 @@ export class Utils {
     return team_logo ? team_logo : Utils.teamLogoDefault;
   }
 
+  static validateIfScoreNull(score: any): string {
+    return score == null ? 0 : score;
+  }
+
   static isEmpty(obj: any): any {
     return Object.keys(obj).length === 0;
   }

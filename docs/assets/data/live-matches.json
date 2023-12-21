@@ -1,0 +1,227 @@
+[
+{
+    "id": 722594,
+    "provider_id": 722594,
+    "group_id": "1-3-24765-56662",
+    "name": "Bracket - Lower Bracket",
+    "start_date": "2023-12-19T04:16:00.000Z",
+    "end_date": null,
+    "postponed_from": null,
+    "lifecycle": "live",
+    "tier": 3,
+    "best_of": 3,
+    "streamed": true,
+    "chain": [
+      
+    ],
+    "bracket_position": {
+      "col": 3,
+      "part": "LB",
+      "offset": 6
+    },
+    "scores": {
+      "125888": 1,
+      "126413": 0
+    },
+    "participant_type": "team",
+    "participants": [
+      {
+        "id": 126413,
+        "seed": 1,
+        "score": 0,
+        "stats": null,
+        "winner": false,
+        "forfeit": false,
+        "game_id": 1,
+        "players": [
+          {
+            "id": 55562,
+            "images": [
+              
+            ],
+            "country": {
+              "id": 124,
+              "name": "Indonesia",
+              "images": [
+                {
+                  "url": "https://img.abiosgaming.com/flags/Indonesia.png",
+                  "type": "default",
+                  "fallback": false
+                }
+              ],
+              "abbreviation": "ID"
+            },
+            "last_name": "Reski",
+            "nick_name": "womy",
+            "first_name": "Syaid"
+          }
+        ],
+        "team_id": 103317,
+        "roster_id": 126413,
+        "team_logo": "https://img.abiosgaming.com/competitors/MAG-Indonesia.png",
+        "team_name": "MAG.Indonesia",
+        "team_abbreviation": "MI"
+      },
+      {
+        "id": 125888,
+        "seed": 2,
+        "score": 1,
+        "stats": null,
+        "winner": false,
+        "forfeit": false,
+        "game_id": 1,
+        "players": [
+          {
+            "id": 57419,
+            "images": [
+              
+            ],
+            "country": {
+              "id": 66,
+              "name": "China",
+              "images": [
+                {
+                  "url": "https://img.abiosgaming.com/flags/China.png",
+                  "type": "default",
+                  "fallback": false
+                }
+              ],
+              "abbreviation": "CN"
+            },
+            "last_name": "Jian",
+            "nick_name": "Irving",
+            "first_name": "Li"
+          }
+        ],
+        "team_id": 98680,
+        "roster_id": 125888,
+        "team_logo": "https://img.abiosgaming.com/competitors/2023-Team-Bright_teamlogo.png",
+        "team_name": "Team Bright",
+        "team_abbreviation": "TB"
+      }
+    ],
+    "game": {
+      "id": 1,
+      "name": "Dota 2",
+      "abbreviation": "Dota 2",
+      "images": [
+        {
+          "url": "https://img.abiosgaming.com/games/dota-square-logo.png",
+          "type": "square"
+        },
+        {
+          "url": "https://img.abiosgaming.com/games/round-dota-logo.png",
+          "type": "circle"
+        },
+        {
+          "url": "https://img.abiosgaming.com/games/flat-rectangular-Dota-logo.jpg",
+          "type": "rectangle"
+        }
+      ]
+    },
+    "tournament": {
+      "id": 24765,
+      "name": "2023 Kobolds Rave",
+      "abbreviation": "KR",
+      "images": [
+        {
+          "url": "https://img.abiosgaming.com/events/Kobolds-Rave-small.png",
+          "type": "small"
+        },
+        {
+          "url": "https://img.abiosgaming.com/events/Kobolds-Rave-large.png",
+          "type": "large"
+        },
+        {
+          "url": "https://img.abiosgaming.com/events/Kobolds-Rave-square.png",
+          "type": "square"
+        }
+      ]
+    },
+    "substage": {
+      "id": 56662,
+      "name": "Bracket"
+    },
+    "matches": [
+      {
+        "id": 1128510
+      },
+      {
+        "id": 1128511
+      },
+      {
+        "id": 1128512
+      }
+    ],
+    "casters": [
+      {
+        "caster": {
+          "id": 8792
+        },
+        "primary": true
+      }
+    ],
+    "broadcasters": [
+      {
+        "official": true,
+        "broadcasts": [
+          {
+            "language": {
+              "id": 1
+            },
+            "external_id": "cringestation_en"
+          }
+        ],
+        "broadcaster": {
+          "id": 2197,
+          "name": "cringestation_en",
+          "platform": {
+            "id": 1
+          },
+          "external_id": "cringestation_en",
+          "broadcast_defaults": {
+            "language": {
+              "id": 1
+            }
+          }
+        }
+      }
+    ],
+    "has_incident_report": false,
+    "coverage": {
+      "data": {
+        "live": {
+          "cv": {
+            "fact": "available",
+            "expectation": "available"
+          },
+          "api": {
+            "fact": "available",
+            "expectation": "available"
+          }
+        },
+        "postgame": {
+          "api": {
+            "fact": "unsupported",
+            "expectation": "unsupported"
+          },
+          "server": {
+            "fact": "pending",
+            "expectation": "available"
+          }
+        },
+        "realtime": {
+          "api": {
+            "fact": "available",
+            "expectation": "available"
+          },
+          "server": {
+            "fact": "unsupported",
+            "expectation": "unsupported"
+          }
+        }
+      }
+    }
+  }
+]
+  

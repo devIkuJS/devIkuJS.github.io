@@ -58,7 +58,8 @@ export class DetailMatchComponent {
         teamAwayScore: data.participants[1].score,
         teamHomePlayers: data.participants[0].players,
         teamAwayPlayers: data.participants[1].players,
-        best_of: data.best_of
+        best_of: data.best_of,
+        broadcast: data.broadcasters[0].broadcasts[0].external_id
       };
       this.setDetailMatch(serieMatch)
   }

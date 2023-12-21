@@ -20,6 +20,7 @@
                 <div class="info-teams-item">
                    <img [src]="item.participants[1].teamAwayLogo" class="info-team-logo" loading="lazy">
                    <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[1].teamAwayName}}</p>
+                   <a href="javascript:void(0)" class="mt-4" style="cursor:default;"><img src="assets/img/betano-logo.png" class="betano-logo" loading="lazy"></a>
                 </div>
              </div>
             </div>
@@ -39,7 +40,7 @@
                 <div class="info-teams-item">
                    <img [src]="item.participants[0].teamHomeLogo" class="info-team-logo" loading="lazy">
                    <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[0].teamHomeName}}</p>
-                   <a class="btn btn-warning mt-3 fw-semibold" href="https://pe.betano.com/sport/esports/campeonatos/dota-2/189391/" target="_blank"> Ver cuotas</a>
+                   <a class="btn btn-warning mt-3 fw-semibold" href="https://link.ggpedia.live/betano" target="_blank"> Ver cuotas</a>
                 </div>
                 <div class="info-teams-result">
                    <a class="btn-vs" href="javascript:void(0)"> VS </a>
@@ -47,39 +48,13 @@
                 <div class="info-teams-item">
                    <img [src]="item.participants[1].teamAwayLogo" class="info-team-logo" loading="lazy">
                    <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[1].teamAwayName}}</p>
-                   <a href="javascript:void(0)" class="mt-4"><img src="assets/img/betano-logo.png" class="betano-logo" loading="lazy"></a>
+                   <a href="javascript:void(0)" class="mt-4" style="cursor:default;"><img src="assets/img/betano-logo.png" class="betano-logo" loading="lazy"></a>
                 </div>
              </div>
             </div>
          </div>
       </div>
    </ng-template>
-
-   <!--
-     <div class="card" *ngFor="let item of topMatch">
-        <div class="card-header d-flex justify-content-between border-0">
-           <h5 class="card-title">Partida Top</h5>
-           <span style="padding-top:2.5px;color:#fff;">En {{item.begin_at}}</span>
-        </div>
-        <div class="card-body">
-         <div class="info-teams-container">
-            <div class="info-teams-item">
-               <img [src]="item.opponents[0].image_url" class="info-team-logo" loading="lazy">
-               <p class="mb-0 mt-3 small text-white name-team-width">{{item.opponents[0].name}}</p>
-               <a class="btn btn-warning mt-3 fw-semibold" href="#"> Apostar</a>
-            </div>
-            <div class="info-teams-result">
-               <a class="btn-vs" href="javascript:void(0)"> VS </a>
-            </div>
-            <div class="info-teams-item">
-               <img [src]="item.opponents[1].image_url" class="info-team-logo" loading="lazy">
-               <p class="mb-0 mt-3 small text-white name-team-width">{{item.opponents[1].name}}</p>
-               <a class="btn btn-outline-light mt-3" href="https://gg.bet/es/dota2" target="_blank">Ver</a>
-            </div>
-         </div>
-        </div>
-     </div>
-   -->
      <div class="col-sm-6 col-lg-12 mt-3">
         <div class="card">
            <div class="card-header d-sm-flex justify-content-between align-items-center border-0">
@@ -88,6 +63,11 @@
            <div class="card-body pt-0">
               <div class="v-block__content--with-margin upcoming-series__body text-body-2">
                <div *ngIf="!upComingMatchesToday?.length;else upcomingMatchesNotEmpty">
+                  <div class="upcoming-series__item">
+                     <h5 class="text-center text-white mt-4">Por el momento no se encontraron próximas partidas</h5>
+                  </div>
+                 
+                  <!--
                   <div class="upcoming-series__item" *ngFor="let item of upComingMatchesTomorrow">
                      <div class="upcoming-series__series">
                         <div class="upcoming-series__championship text-uppercase">{{item.league_name}}</div>
@@ -101,6 +81,7 @@
                         </div>
                   </div>
                </div>
+            -->
                </div>
                <ng-template #upcomingMatchesNotEmpty>
                   <div class="upcoming-series__item" *ngFor="let item of upComingMatchesToday">

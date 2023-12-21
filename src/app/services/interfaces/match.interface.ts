@@ -74,11 +74,10 @@ export interface Pastmatch {
 
 export interface Livematch {
     id: number; 
-    league_name: string;
-    opponents: Opponent[];
-    stream_url: string;
-    number_of_games: string;
-    results: Results[];
+    lifecycle: string;
+    league_name: Tournament;
+    best_of: number;
+    participants: Participant[];
 }
 
 export interface Recentmatch {
@@ -118,6 +117,7 @@ export interface DetailSerieMatch {
     teamHomePlayers: Team[];
     teamAwayPlayers: Team[];
     best_of: number;
+    broadcast: any;
 }
 
 export interface Hero {
