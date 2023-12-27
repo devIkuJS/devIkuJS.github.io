@@ -328,37 +328,42 @@
                   <h5 class="card-title">Encuentros pasados</h5>
                </div>
                <div class="card-body">
-                  <div class="row mb-4" *ngFor="let item of listH2H">
-                     <div class="col-lg-6">
-                        <div>
-                           <h5 class="text-tournament text-center">{{item.tournament}}</h5>
-                        </div>
+                  <div *ngIf="!listH2H?.length;else matchPastNotEmpty">
+                     <h4 class="text-center text-white">No se registraron encuentros pasados</h4>
                      </div>
-                     <div class="col-lg-6">
-                        <div>
-                           <h5 class="text-tournament text-center">{{item.endDate | date:'medium'}}</h5>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div>
-                           <div class="teams">
-                              <div class="teams-item teams-item-type-radiant">
-                                 <span class="text-teams">{{item.teamHomeName}}</span>
-                                 <div class="image">
-                                    <img [src]="item.teamHomeLogo">
-                                 </div>
+                     <ng-template #matchPastNotEmpty>
+                        <div class="row mb-4" *ngFor="let item of listH2H">
+                           <div class="col-lg-6">
+                              <div>
+                                 <h5 class="text-tournament text-center">{{item.tournament}}</h5>
                               </div>
-                              <div class="text-teams text-score">{{item.teamHomeScore}} - {{item.teamAwayScore}}</div>
-                              <div class="teams-item teams-item-type-dire">
-                                 <div class="image">
-                                    <img [src]="item.teamAwayLogo">
+                           </div>
+                           <div class="col-lg-6">
+                              <div>
+                                 <h5 class="text-tournament text-center">Fecha de término: {{item.endDate | date:'medium'}}</h5>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div>
+                                 <div class="teams">
+                                    <div class="teams-item teams-item-type-radiant">
+                                       <span class="text-teams">{{item.teamHomeName}}</span>
+                                       <div class="image">
+                                          <img [src]="item.teamHomeLogo">
+                                       </div>
+                                    </div>
+                                    <div class="text-teams text-score">{{item.teamHomeScore}} - {{item.teamAwayScore}}</div>
+                                    <div class="teams-item teams-item-type-dire">
+                                       <div class="image">
+                                          <img [src]="item.teamAwayLogo">
+                                       </div>
+                                       <span class="text-teams">{{item.teamAwayName}}</span>
+                                    </div>
                                  </div>
-                                 <span class="text-teams">{{item.teamAwayName}}</span>
                               </div>
                            </div>
                         </div>
-                     </div>
-                  </div>
+                     </ng-template>
                </div>
             </div>
          </div>

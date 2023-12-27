@@ -1,28 +1,25 @@
 <nav class="navbar navbar-expand-lg">
 	<div class="container">
-	   <a class="navbar-brand" routerLink="/">
+	   <a class="navbar-brand" (click)="goHome()" role="button">
 	   <img class="light-mode-item navbar-brand-item" src="/assets/img/ggpedia-logo.png" alt="ggpedia">
 	   </a>
-	   <button class="navbar-toggler ms-auto icon-md btn btn-light p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	   <!--<button class="navbar-toggler ms-auto icon-md btn btn-light p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 	   <span class="navbar-toggler-animation">
 	   <span></span>
 	   <span></span>
 	   <span></span>
 	   </span>
 	   </button>
-	   <div class="collapse navbar-collapse" id="navbarCollapse">
+	-->
+	  <!-- <div class="collapse navbar-collapse" id="navbarCollapse">
 		  <ul class="navbar-nav navbar-nav-scroll ms-auto">
 			 <li class="nav-item">
-				<a class="nav-link" href="my-profile-connections.html">Home</a>
-			 </li>
-			 <li class="nav-item">
-				<a class="nav-link" href="my-profile-connections.html">Noticias</a>
-			 </li>
-			 <li class="nav-item">
-				<a class="nav-link" href="my-profile-connections.html">Configuración</a>
+				<a class="nav-link" routerLink="/">Home</a>
 			 </li>
 		  </ul>
 	   </div>
+		-->
+	   <!--
 	   <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
 		  <li class="nav-item ms-2">
 			 <a class="nav-link icon-md btn btn-light p-0" href="settings.html">
@@ -30,5 +27,6 @@
 			 </a>
 		  </li>
 	   </ul>
+	-->
 	</div>
  </nav>

@@ -64,31 +64,19 @@
                   <h5 class="card-title">Detalles</h5>
                </div>
                <div class="card-body">
-                   <h5>Hola</h5>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="row" *ngIf="isEmptyObject(detailGameMatch);else detailGameMatchNotEmpty">
-         <div class="col-lg-6 mb-3">
-            <div class="card">
-               <div class="card-header d-flex justify-content-between border-0">
-                  <h5 class="card-title">Teams - Partida {{matchIndex}}</h5>
-               </div>
-               <div class="card-body">
-                  <div class="row">
-                     <div class="list-picks-container col-lg-4" >
-                        <div>
-                           <div class="pick-hero-draft-team" *ngFor="let item of detailSerieMatch.teamHomePlayers; let i=index">
-                              <img src="./assets/img/placeholder-hero.png" width="64" height="36" loading="lazy">
-                              <div class="pick-player-name small text-white">{{item.nick_name}}</div>
-                           </div>
+                  <div class="list-picks-container" >
+                     <div>
+                        <h5 class="text-white">{{detailSerieMatch.teamHomeName}}</h5>
+                        <div class="pick-hero-draft-team" *ngFor="let item of detailSerieMatch.teamHomePlayers; let i=index">
+                           <img src="./assets/img/placeholder-hero.png" width="64" height="36" loading="lazy">
+                           <div class="pick-player-name small text-white">{{item.nick_name}}</div>
                         </div>
-                        <div>
-                           <div class="pick-hero-draft-team pick-hero-draft-team-dire" *ngFor="let item of detailSerieMatch.teamAwayPlayers; let i=index">
-                              <img src="./assets/img/placeholder-hero.png" class="pick-hero-dire" width="64" height="36" loading="lazy">
-                              <div class="pick-player-name small text-white text-end">{{item.nick_name}}</div>
-                           </div>
+                     </div>
+                     <div>
+                        <h5 class="text-white text-end">{{detailSerieMatch.teamAwayName}}</h5>
+                        <div class="pick-hero-draft-team pick-hero-draft-team-dire" *ngFor="let item of detailSerieMatch.teamAwayPlayers; let i=index">
+                           <img src="./assets/img/placeholder-hero.png" class="pick-hero-dire" width="64" height="36" loading="lazy">
+                           <div class="pick-player-name small text-white text-end">{{item.nick_name}}</div>
                         </div>
                      </div>
                   </div>
@@ -96,260 +84,6 @@
             </div>
          </div>
       </div>
-      <ng-template #detailGameMatchNotEmpty>
-      <div class="row">
-         <div class="col-lg-6 mb-3">
-            <div class="card">
-               <div class="card-header d-flex justify-content-between border-0">
-                  <h5 class="card-title">Drafts - Partida {{matchIndex}}</h5>
-               </div>
-               <div class="card-body">
-                  <div class="row">
-                     <h5 class="text-tournament">{{detailSerieMatch.teamHomeName}}</h5>
-                     <div class="stats-block__content dflex">
-                        <div class="picks-container stats-block__photo" *ngFor="let item of detailGameMatch.playersHome; let i=index">
-                           <picture>
-                              <img loading="lazy" height="30" width="30" [src]="item.hero.url_image">
-                              <span class="text-white text-nickname">{{item.nick_name}}</span>
-                           </picture>
-                        </div>
-                     </div>
-                     <h5 class="text-tournament">{{detailSerieMatch.teamAwayName}}</h5>
-                     <div class="stats-block__content dflex">
-                        <div class="picks-container stats-block__photo" *ngFor="let item of detailGameMatch.playersAway; let i=index">
-                           <picture>
-                              <img loading="lazy" height="30" width="30" [src]="item.hero.url_image">
-                              <span class="text-white text-nickname">{{item.nick_name}}</span>
-                           </picture>
-                        </div>
-                     </div>
-                     <div class="col-lg-12 mt-3 mb-3">
-                        <div class="map">
-                           <picture class="container-map">
-                              <source srcset="https://www.opendota.com/assets/images/dota2/map/detailed_733.webp" type="image/webp">
-                              <source srcset="https://www.opendota.com/assets/assets/images/dota2/map/detailed_733.jpg" type="image/jpeg">
-                              <img src="https://www.opendota.com/assets/assets/images/dota2/map/detailed_733.jpg" alt="Dota 2 Map - 7.33">
-                           </picture>
-                           <div class="container-element-map">
-                              <span style="top: 82%; left: 12%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 79%; left: 8%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 83.5%; left: 23%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 85%; left: 46%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 82%; left: 75%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 71.5%; left: 18.5%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower_angle.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 63%; left: 27.5%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower_angle.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 54%; left: 38%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower_angle.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 68%; left: 8%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 53%; left: 9%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 36%; left: 9.5%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 80.5%; left: 20%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_rax.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 84.5%; left: 20%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_rax.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 72%; left: 15%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_rax_angle.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 74.5%; left: 18%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_rax_angle.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 70.5%; left: 6.5%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_rax.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 70.5%; left: 10.5%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_rax.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 16%; left: 84%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 13%; left: 81%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 28%; left: 85.5%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 45%; left: 85%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 60%; left: 84%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 24%; left: 73%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower_angle.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 33%; left: 64%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower_angle.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 43.5%; left: 51%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower_angle.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 12.5%; left: 70%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 11%; left: 49%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 12%; left: 18%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_tower.png" alt="" style="height: 16px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 24%; left: 84%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_rax.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 24%; left: 88%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_rax.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 19.5%; left: 74.5%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_rax_angle.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 22%; left: 77.5%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_rax_angle.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 10%; left: 74%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_rax.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 14%; left: 74%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_rax.png" alt="" style="height: 12px; filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 83%; left: 5%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/goodguys_fort.png" alt="" style="height: 25px;filter: contrast(150%);max-width: none;">
-                              </span>
-                              <span style="top: 9%; left: 84%; position: absolute; width: 0px; height: 0px;">
-                              <img src="https://www.opendota.com/assets/images/dota2/map/badguys_fort.png" alt="" style="height: 25px; filter: contrast(150%);max-width: none;">
-                              </span>
-                           </div>
-                        </div>
-                     </div>
-                     <!--
-                        <div class="list-picks-container col-lg-4">
-                           <div>
-                              <div class="pick-hero-draft-team" *ngFor="let item of detailGameMatch.playersHome; let i=index">
-                                 <img [src]="item.hero.url_image" width="64" height="36" loading="lazy">
-                                 <div class="pick-player-name small text-white">{{item.nick_name}}</div>
-                              </div>
-                           </div>
-                           
-                           <div>
-                              <div class="pick-hero-draft-team pick-hero-draft-team-dire" *ngFor="let item of detailGameMatch.playersAway; let i=index">
-                                 <img [src]="item.hero.url_image" class="pick-hero-dire" width="64" height="36" loading="lazy">
-                                 <div class="pick-player-name small text-white text-end">{{item.nick_name}}</div>
-                              </div>
-                           </div>
-                        </div>
-                        -->
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-6 mb-3">
-            <div class="card">
-               <div class="card-header d-flex justify-content-between border-0">
-                  <h5 class="card-title">Estadisticas</h5>
-               </div>
-               <div class="card-body">
-                  <div class="row">
-                        <div class="table-responsive">
-                           <h5 class="text-tournament">{{detailSerieMatch.teamHomeName}}</h5>
-                           <table class="table">
-                              <thead>
-                                 <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Level</th>
-                                    <th scope="col">K</th>
-                                    <th scope="col">M</th>
-                                    <th scope="col">A</th>
-                                    <th scope="col">GPM</th>
-                                    <th scope="col">NET</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr *ngFor="let item of detailGameMatch.playersHome; let i=index">
-                                    <td style="padding: 0px;">
-                                       <div class="stats-block__col flex alignCenter">
-                                          <picture>
-                                             <img loading="lazy" height="30" width="30" [src]="item.hero.url_icon" class="hero-icon-img">
-                                          </picture>
-                                          <div class="block-player">
-                                             <strong>{{item.nick_name}}</strong>
-                                             <span>{{item.hero.name}}</span>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td>{{item.level}}</td>
-                                    <td>{{item.kills.total}}</td>
-                                    <td>{{item.deaths.total}}</td>
-                                    <td>{{item.assists.total}}</td>
-                                    <td>{{item.gold.per_minute | number : '1.2-2'}}</td>
-                                    <td>{{item.gold.net_worth}}</td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                        <div class="table-responsive">
-                           <h5 class="text-tournament">{{detailSerieMatch.teamAwayName}}</h5>
-                           <table class="table">
-                              <thead>
-                                 <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Level</th>
-                                    <th scope="col">K</th>
-                                    <th scope="col">M</th>
-                                    <th scope="col">A</th>
-                                    <th scope="col">GPM</th>
-                                    <th scope="col">NET</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr *ngFor="let item of detailGameMatch.playersAway; let i=index">
-                                    <td style="padding: 0px;">
-                                       <div class="stats-block__col flex alignCenter">
-                                          <picture>
-                                             <img loading="lazy" height="30" width="30" [src]="item.hero.url_icon" class="hero-icon-img">
-                                          </picture>
-                                          <div class="block-player">
-                                             <strong>{{item.nick_name}}</strong>
-                                             <span>{{item.hero.name}}</span>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td>{{item.level}}</td>
-                                    <td>{{item.kills.total}}</td>
-                                    <td>{{item.deaths.total}}</td>
-                                    <td>{{item.assists.total}}</td>
-                                    <td>{{item.gold.per_minute | number : '1.2-2'}}</td>
-                                    <td>{{item.gold.net_worth}}</td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </ng-template>
       <div class="row">
          <div class="col-lg-12 mb-3">
             <div class="card">
@@ -357,37 +91,42 @@
                   <h5 class="card-title">Encuentros pasados</h5>
                </div>
                <div class="card-body">
-                  <div class="row mb-4" *ngFor="let item of listH2H">
-                     <div class="col-lg-6">
-                        <div>
-                           <h5 class="text-tournament text-center">{{item.tournament}}</h5>
+                  <div *ngIf="!listH2H?.length;else matchPastNotEmpty">
+                  <h4 class="text-center text-white">No se registraron encuentros pasados</h4>
+                  </div>
+                  <ng-template #matchPastNotEmpty>
+                     <div class="row mb-4" *ngFor="let item of listH2H">
+                        <div class="col-lg-6">
+                           <div>
+                              <h5 class="text-tournament text-center">{{item.tournament}}</h5>
+                           </div>
                         </div>
-                     </div>
-                     <div class="col-lg-6">
-                        <div>
-                           <h5 class="text-tournament text-center">{{item.endDate | date:'medium'}}</h5>
+                        <div class="col-lg-6">
+                           <div>
+                              <h5 class="text-tournament text-center">Fecha de término: {{item.endDate | date:'medium'}}</h5>
+                           </div>
                         </div>
-                     </div>
-                     <div class="row">
-                        <div>
-                           <div class="teams">
-                              <div class="teams-item teams-item-type-radiant">
-                                 <span class="text-teams">{{item.teamHomeName}}</span>
-                                 <div class="image">
-                                    <img [src]="item.teamHomeLogo">
+                        <div class="row">
+                           <div>
+                              <div class="teams">
+                                 <div class="teams-item teams-item-type-radiant">
+                                    <span class="text-teams">{{item.teamHomeName}}</span>
+                                    <div class="image">
+                                       <img [src]="item.teamHomeLogo">
+                                    </div>
                                  </div>
-                              </div>
-                              <div class="text-teams text-score">{{item.teamHomeScore}} - {{item.teamAwayScore}}</div>
-                              <div class="teams-item teams-item-type-dire">
-                                 <div class="image">
-                                    <img [src]="item.teamAwayLogo">
+                                 <div class="text-teams text-score">{{item.teamHomeScore}} - {{item.teamAwayScore}}</div>
+                                 <div class="teams-item teams-item-type-dire">
+                                    <div class="image">
+                                       <img [src]="item.teamAwayLogo">
+                                    </div>
+                                    <span class="text-teams">{{item.teamAwayName}}</span>
                                  </div>
-                                 <span class="text-teams">{{item.teamAwayName}}</span>
                               </div>
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </ng-template>
                </div>
             </div>
          </div>

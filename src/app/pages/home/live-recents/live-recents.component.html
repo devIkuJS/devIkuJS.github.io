@@ -1,110 +1,119 @@
 <div class="card">
-  <div class="card-header d-sm-flex justify-content-between align-items-center border-0">
-     <ul class="nav nav-tabs nav-bottom-line justify-content-center justify-content-md-start" role="tablist">
-        <li class="nav-item" role="presentation"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-1" aria-selected="true" role="tab"> En vivo </a> </li>
-        <li class="nav-item" role="presentation"> <a class="nav-link" data-bs-toggle="tab" href="#tab-2" aria-selected="false" role="tab" tabindex="-1"> Recientes </a> </li>
-     </ul>
-  </div>
-  <div class="card-body card-body-padding-0">
-     <div class="tab-content">
-        <div class="tab-pane fade active show" id="tab-1" role="tabpanel">
-           <div class="g-3">
-              <div *ngIf="!liveMatches?.length;else liveMatchNotEmpty">
-                 <h4 class="text-center text-white"><i class="d2ce blush"></i> No se encontraron partidas en vivo <i class="d2ce cheeky"></i></h4>
-
-              </div>
-              <ng-template #liveMatchNotEmpty>
-                 <div *ngFor="let item of liveMatches">
-                    <h4 class="text-center text-white container-recent">{{item.league_name}}</h4>
-                    <div class="row mb-3">
-                     <div class="col-lg-6">
-                        <div class="hstack gap-5" style="display: flex;justify-content: center;">
-                           <div class="overflow-hidden text-center">
-                              <img [src]="item.participants[0].team_logo" loading="lazy" style="width: 122px;height: 110px;">
-                              <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[0].team_name}}</p>
-                           </div>
-                           <div class="series-teams__info-container">
-                              <div class="series-teams__primary-label">{{item.participants[0].score}} - {{item.participants[1].score}}</div>
-                              <div class="series-teams__secondary-label">BO{{item.best_of}}</div>
-                           </div>
-                           <div class="overflow-hidden text-center">
-                              <img [src]="item.participants[1].team_logo" style="width: 122px;height: 110px;" loading="lazy">
-                              <p class="mb-0 mt-3 small text-white name-team-width" >{{item.participants[1].team_name}}</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-6 m-auto">
-                        <div>
-                           <a class="series-list__match" alt="Map 1">
-                              <div class="series-list__match-map-number" routerLink="/partida-en-vivo/{{item.id}}/teams/{{item.participants[0].team_id}}/{{item.participants[1].team_id}}">
-                                 <i class="v-icon notranslate v-icon-attributes" aria-hidden="true">
-                                    <svg class="v-icon__svg" fill="currentColor" style="color:red;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true">
-                                       <path d="M19,12C19,15.86 15.86,19 12,19C8.14,19 5,15.86 5,12C5,8.14 8.14,5 12,5C15.86,5 19,8.14 19,12Z"></path>
-                                    </svg>
-                                 </i>
-                                 <span class="text-body-2">Ver Partida - Hora de inicio 00:23</span></div>
-                           </a>
-                        </div>
-                     </div>
-                    </div>
-                 </div>
-              </ng-template>
-           </div>
-        </div>
-        <div class="tab-pane fade" id="tab-2" role="tabpanel">
-         <div class="d-flex justify-content-center">
-            <div class="row mb-3">
-               <span class="col-sm-6 col-form-label text-white">Selecciona el día </span>
-               <div class="col-sm-6">
-                  <input type="text"
-                  class="form-control"
-                  #dp="bsDatepicker"
-                  bsDatepicker
-                  [bsValue]="bsValue"
-                  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default' }"
-                  [maxDate]="today"
-                  (bsValueChange)="onValueChange($event)"
-                  readonly>
+   <div class="card-header d-sm-flex justify-content-between align-items-center border-0">
+      <ul class="nav nav-tabs nav-bottom-line justify-content-center justify-content-md-start" role="tablist">
+         <li class="nav-item" role="presentation"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-1" aria-selected="true" role="tab"> En vivo </a> </li>
+         <li class="nav-item" role="presentation"> <a class="nav-link" data-bs-toggle="tab" href="#tab-2" aria-selected="false" role="tab" tabindex="-1"> Recientes </a> </li>
+      </ul>
+   </div>
+   <div class="card-body card-body-padding-0">
+      <div class="tab-content">
+         <div class="tab-pane fade active show" id="tab-1" role="tabpanel">
+            <div class="g-3">
+               <div *ngIf="!liveMatches?.length;else liveMatchNotEmpty">
+                  <h4 class="text-center text-white"><i class="d2ce blush"></i> No se encontraron partidas en vivo <i class="d2ce cheeky"></i></h4>
                </div>
-            </div>
-         </div>
-         <div *ngIf="!recentMatches?.length;else recentMatchNotEmpty">
-            <h4 class="text-center text-white"><i class="d2ce blush"></i> Todavía no existen partidas recientes registradas<i class="d2ce cheeky"></i></h4>
-         </div>
-         <ng-template #recentMatchNotEmpty>
-         <div class="series-list" *ngFor="let item of recentMatches">
-            <div class="series-list__item">
-               <div class="mb-3">
-                  <h5 class="text-white">{{item.league_name}}</h5>
-               </div>
-              
-                  <div class="series-teams series-list__teams">
-                     <div class="series-teams-item">
-                        <div class="series-teams-item__logo-container series-teams-item__logo">
-                           <img [src]="item.participants[0].team_logo" class="series-teams-item__logo" loading="lazy">
+               <ng-template #liveMatchNotEmpty>
+                  <div *ngFor="let item of liveMatches">
+                     <h4 class="text-center text-white container-recent">{{item.league_name}}</h4>
+                     <div class="row mb-3">
+                        <div class="col-lg-6">
+                           <div class="series-teams series-list__teams">
+                              <div class="series-teams-item">
+                                 <div class="series-teams-item__logo-container series-teams-item__logo">
+                                    <img [src]="item.participants[0].team_logo" class="series-teams-item__logo" loading="lazy">
+                                 </div>
+                                 <span class="text-center text-white">{{item.participants[0].team_name}}</span>
+                              </div>
+                              <div class="series-teams__info-container">
+                                 <div class="series-teams__primary-label">{{item.participants[0].score}} - {{item.participants[1].score}}</div>
+                                 <div class="series-teams__secondary-label">BO{{item.best_of}}</div>
+                              </div>
+                              <div class="series-teams-item">
+                                 <div class="series-teams-item__logo-container series-teams-item__logo">
+                                    <img [src]="item.participants[1].team_logo" class="series-teams-item__logo" loading="lazy">
+                                 </div>
+                                 <span class="text-center text-white">{{item.participants[1].team_name}}</span>
+                              </div>
+                           </div>
                         </div>
-                        <span class="text-center text-white">{{item.participants[0].team_name}} {{item.participants[0].id}}</span>
-                     </div>
-                     <div class="series-teams__info-container">
-                        <div class="series-teams__primary-label">{{item.participants[0].score}} - {{item.participants[1].score}}</div>
-                        <div class="series-teams__secondary-label">BO{{item.best_of}}</div>
-                     </div>
-                     <div class="series-teams-item">
-                        <div class="series-teams-item__logo-container series-teams-item__logo">
-                           <img [src]="item.participants[1].team_logo" class="series-teams-item__logo" loading="lazy">
+                        <div class="col-lg-6 m-auto">
+                           <div>
+                              <a class="series-list__match" alt="Map 1" routerLink="/partida-en-vivo/{{item.id}}/teams/{{item.participants[0].team_id}}/{{item.participants[1].team_id}}">
+                                 <div class="series-list__match-map-number">
+                                    <i class="v-icon notranslate v-icon-attributes fa-beat-fade" aria-hidden="true" style="--fa-animation-duration: 1.2s;">
+                                       <svg class="v-icon__svg" fill="currentColor" style="color:red;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                                          <path d="M19,12C19,15.86 15.86,19 12,19C8.14,19 5,15.86 5,12C5,8.14 8.14,5 12,5C15.86,5 19,8.14 19,12Z"></path>
+                                       </svg>
+                                    </i>
+                                    <span class="text-body-2">Ver Partida en vivo - Hora de inicio {{item.start_date | date : "shortTime" }}</span>
+                                 </div>
+                              </a>
+                           </div>
                         </div>
-                        <span class="text-center text-white">{{item.participants[1].team_name}} {{item.participants[1].id}}</span>
                      </div>
                   </div>
-                  <ng-container *ngFor ="let match of item.matches; let i=index">
-                     <div class="mb-4 text-center" *ngIf="i < (item.participants[0].score + item.participants[1].score)">
-                        <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/{{i+1}}/series-id/{{item.id}}/teams/{{item.participants[0].team_id}}/{{item.participants[1].team_id}}">Ver Partida {{i+1}}</a>
-                     </div>
-                  </ng-container>
+               </ng-template>
             </div>
          </div>
-      </ng-template>
-        </div>
-     </div>
-  </div>
+         <div class="tab-pane fade" id="tab-2" role="tabpanel">
+            <ngx-spinner 
+            size= "medium" 
+            color= "#fff" 
+            type= "ball-scale-multiple" 
+            [fullScreen] = "true"><p style="color: white"> Cargando partidas...</p></ngx-spinner>
+            <div class="d-flex justify-content-center">
+               <div class="row mb-3">
+                  <span class="col-sm-6 col-form-label text-white label-day">Selecciona el día </span>
+                  <div class="col-sm-6">
+                     <input type="text"
+                     class="form-control"
+                     #dp="bsDatepicker"
+                     bsDatepicker
+                     [bsValue]="bsValue"
+                     [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default' }"
+                     [maxDate]="today"
+                     (bsValueChange)="onValueChange($event)"
+                     readonly>
+                  </div>
+               </div>
+            </div>
+   
+            <div *ngIf="!recentMatches?.length;else recentMatchNotEmpty">
+               <h4 class="text-center text-white"><i class="d2ce blush"></i> Todavía no existen partidas recientes registradas<i class="d2ce cheeky"></i></h4>
+            </div>
+            <ng-template #recentMatchNotEmpty>
+               <div class="series-list" *ngFor="let item of recentMatches">
+                  <div class="series-list__item">
+                     <div class="mb-3">
+                        <h5 class="text-white">{{item.league_name}}</h5>
+                     </div>
+                     <div class="series-teams series-list__teams">
+                        <div class="series-teams-item">
+                           <div class="series-teams-item__logo-container series-teams-item__logo">
+                              <img [src]="item.participants[0].team_logo" class="series-teams-item__logo" loading="lazy">
+                           </div>
+                           <span class="text-center text-white">{{item.participants[0].team_name}}</span>
+                        </div>
+                        <div class="series-teams__info-container">
+                           <div class="series-teams__primary-label">{{item.participants[0].score}} - {{item.participants[1].score}}</div>
+                           <div class="series-teams__secondary-label">BO{{item.best_of}}</div>
+                        </div>
+                        <div class="series-teams-item">
+                           <div class="series-teams-item__logo-container series-teams-item__logo">
+                              <img [src]="item.participants[1].team_logo" class="series-teams-item__logo" loading="lazy">
+                           </div>
+                           <span class="text-center text-white">{{item.participants[1].team_name}}</span>
+                        </div>
+                     </div>
+                     <ng-container *ngFor ="let match of item.matches; let i=index">
+                        <div class="mb-4 text-center" *ngIf="i < (item.participants[0].score + item.participants[1].score)">
+                           <a class="btn btn-warning mt-3 fw-semibold" routerLink="/detalle-partida/{{match.id}}/{{i+1}}/series-id/{{item.id}}/teams/{{item.participants[0].team_id}}/{{item.participants[1].team_id}}">Ver Partida {{i+1}}</a>
+                        </div>
+                     </ng-container>
+                  </div>
+               </div>
+            </ng-template>
+         </div>
+      </div>
+   </div>
 </div>

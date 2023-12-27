@@ -61,19 +61,13 @@ export class UpcomingMatchesComponent implements OnInit {
     var mensajeHrs = diffHrs == 0 ? "" : `${diffHrs} h`;
     return  `${mensajeHrs} ${diffMins} min`
   }
-
-  convertToHour(begin_at: string): string {
-    var hourGame = new Date(begin_at);
-    return  `${hourGame.getHours().toString()}:00`
-  }
-
-
+  
   private mapUpcomingMatchesToday(serviceMatch: any[]): void {
     const matches: Match[] = serviceMatch.map(match => ({
       id: match.id,
       league_name: match.tournament.name,
       hour_coming_soon: this.diffMinsToComingGame(match.start_date),
-      begin_at: this.convertToHour(match.start_date),
+      begin_at: match.start_date,
       best_of: match.best_of,
       participants: this.validateParticipants(match.participants)
     }))
@@ -85,7 +79,7 @@ export class UpcomingMatchesComponent implements OnInit {
       id: match.id,
       league_name: match.tournament.name,
       hour_coming_soon: this.diffMinsToComingGame(match.start_date),
-      begin_at: this.convertToHour(match.start_date),
+      begin_at: match.start_date,
       best_of: match.best_of,
       participants: this.validateParticipants(match.participants)
     }))

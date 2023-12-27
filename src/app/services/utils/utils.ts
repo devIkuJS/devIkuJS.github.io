@@ -15,7 +15,7 @@ export class Utils {
     return team_logo ? team_logo : Utils.teamLogoDefault;
   }
 
-  static validateIfScoreNull(score: any): string {
+  static validateIfScoreNull(score: any): any {
     return score == null ? 0 : score;
   }
 

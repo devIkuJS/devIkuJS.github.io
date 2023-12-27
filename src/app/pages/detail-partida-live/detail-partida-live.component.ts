@@ -29,7 +29,6 @@ export class DetailPartidaLiveComponent {
 
   constructor(private _gameMatchService: GameMatchService, private route: ActivatedRoute) {
     this.route.params.subscribe(res => this.response = res);
-    console.log(this.response);
     this.idMatch = this.response.matchid;
     this.idGame = this.response.seriesid;
     this.matchIndex = this.response.matchindex;
@@ -53,19 +52,26 @@ export class DetailPartidaLiveComponent {
   private mapDetailSerieMatch(data: any): void {
       const serieMatch: DetailSerieMatch = {
         id: data.id,
+        start_date: data.start_date,
         league_name: `${data.tournament.name} - ${data.name}`,
         teamHomeName: data.participants[0].team_name,
         teamHomeLogo: Utils.getTeamLogo(data.participants[0].team_logo),
-        teamHomeScore: data.participants[0].score,
+        teamHomeScore: Utils.validateIfScoreNull(data.participants[0].score),
         teamAwayName: data.participants[1].team_name,
         teamAwayLogo: Utils.getTeamLogo(data.participants[1].team_logo),
-        teamAwayScore: data.participants[1].score,
+        teamAwayScore: Utils.validateIfScoreNull(data.participants[1].score),
         teamHomePlayers: data.participants[0].players,
         teamAwayPlayers: data.participants[1].players,
         best_of: data.best_of,
-        broadcast: `https://player.twitch.tv/?channel=${data.broadcasters[0].broadcasts[0].external_id}&autoplay=false&parent=www.ggpedia.live`
+        broadcast: `https://player.twitch.tv/?channel=${data.broadcasters[0].broadcasts[0].external_id}&autoplay=false&parent=www.ggpedia.live`,
+        match_summaries: data.match_summaries.map((summary: any) => ({
+          id: summary.id,
+          lifecycle: summary.lifecycle,
+          order: summary.order
+        })),
       };
       this.urlBroadcast = serieMatch.broadcast
+      console.log("SERIECITA",serieMatch )
       this.setDetailMatch(serieMatch)
   }
 
@@ -81,7 +87,7 @@ export class DetailPartidaLiveComponent {
   }
 
   getDetailLiveGameForMatch() {
-    this._gameMatchService.getRealTime(1128526).subscribe(data => {
+    this._gameMatchService.getRealTime(1139288).subscribe(data => {
       console.log("DATA-LIVE", data);
       /*if(!this.isEmptyObject(data)) {
         this.mapDetailGameMatch(data)
@@ -168,7 +174,7 @@ export class DetailPartidaLiveComponent {
     this.idTeamHome = this.response.teamidhome;
     this.idTeamAway= this.response.teamidaway;
     this._gameMatchService.getDetailH2H(this.idTeamHome, this.idTeamAway).subscribe(response => {
-      this.mapDetailH2H(response.data.matches)
+        this.mapDetailH2H(response.data.matches)
     })
   }
 

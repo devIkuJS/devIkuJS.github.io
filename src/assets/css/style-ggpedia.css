@@ -121,7 +121,7 @@
 
 .upcoming-series__series {
     display: grid;
-    grid-template-columns: 40px 1fr 48px;
+    grid-template-columns: 0.5fr 2fr;
     grid-template-rows: 24px 24px 24px;
     grid-gap: 8px;
     width: 100%;
@@ -131,6 +131,10 @@
 .upcoming-series__championship {
     grid-column: 1/span 3;
     grid-row: 1/2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 24px;
 }
 
 .upcoming-series__best-of {
@@ -372,6 +376,12 @@
 
 @media only screen and (max-width: 623px) {
     .series-list__vs {
+        display: none;
+    }
+    .banner-large-width{
+        height: 58px;
+    }
+    .banner-large-height{
         display: none;
     }
 }

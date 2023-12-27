@@ -49,6 +49,7 @@ export class DetailMatchComponent {
   private mapDetailSerieMatch(data: any): void {
       const serieMatch: DetailSerieMatch = {
         id: data.id,
+        start_date: data.start_date,
         league_name: `${data.tournament.name} - ${data.name}`,
         teamHomeName: data.participants[0].team_name,
         teamHomeLogo: Utils.getTeamLogo(data.participants[0].team_logo),
@@ -59,7 +60,12 @@ export class DetailMatchComponent {
         teamHomePlayers: data.participants[0].players,
         teamAwayPlayers: data.participants[1].players,
         best_of: data.best_of,
-        broadcast: data.broadcasters[0].broadcasts[0].external_id
+        broadcast: data.broadcasters[0].broadcasts[0].external_id,
+        match_summaries: data.match_summaries.map((summary: any) => ({
+          id: summary.id,
+          lifecycle: summary.lifecycle,
+          order: summary.order
+        })),
       };
       this.setDetailMatch(serieMatch)
   }

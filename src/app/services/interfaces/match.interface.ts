@@ -77,6 +77,7 @@ export interface Livematch {
     lifecycle: string;
     league_name: Tournament;
     best_of: number;
+    start_date: string;
     participants: Participant[];
 }
 
@@ -107,6 +108,7 @@ export interface MatchTwo {
 
 export interface DetailSerieMatch {
     id: number; 
+    start_date: string;
     league_name: string;
     teamHomeName: string;
     teamHomeLogo: string;
@@ -118,7 +120,15 @@ export interface DetailSerieMatch {
     teamAwayPlayers: Team[];
     best_of: number;
     broadcast: any;
+    match_summaries: Summary[];
 }
+
+export interface Summary {
+    id: number;
+    lifecycle: string;
+    order: number; 
+}
+
 
 export interface Hero {
     id: number;

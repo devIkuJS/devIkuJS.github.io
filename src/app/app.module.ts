@@ -9,9 +9,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HeaderInterceptor } from './services/data-manager/header.interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const routes: any = 
-  {backdropBorderRadius: '4px'};
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +19,7 @@ const routes: any =
     HttpClientModule,
     AppRoutingModule,
     PagesModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [ 
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }

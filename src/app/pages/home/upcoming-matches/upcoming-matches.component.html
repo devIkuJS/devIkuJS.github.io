@@ -1,5 +1,5 @@
 <div class="row g-4">
-  <div class="col-sm-6 col-lg-12">
+   <div class="col-sm-6 col-lg-12">
    <div *ngIf="!upComingMatchesToday?.length;else topMatchNotEmpty">
       <div class="card" *ngFor="let item of upComingMatchesTomorrow; let first = first">
          <div *ngIf="first">
@@ -8,21 +8,22 @@
                <span style="padding-top:2.5px;color:#fff;">En {{item.hour_coming_soon}}</span>
             </div>
             <div class="card-body">
-             <div class="info-teams-container">
-                <div class="info-teams-item">
-                   <img [src]="item.participants[0].teamHomeLogo" class="info-team-logo" loading="lazy">
-                   <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[0].teamHomeName}}</p>
-                   <a class="btn btn-warning mt-3 fw-semibold" href="#"> Ver cuotas</a>
-                </div>
-                <div class="info-teams-result">
-                   <a class="btn-vs" href="javascript:void(0)"> VS </a>
-                </div>
-                <div class="info-teams-item">
-                   <img [src]="item.participants[1].teamAwayLogo" class="info-team-logo" loading="lazy">
-                   <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[1].teamAwayName}}</p>
-                   <a href="javascript:void(0)" class="mt-4" style="cursor:default;"><img src="assets/img/betano-logo.png" class="betano-logo" loading="lazy"></a>
-                </div>
-             </div>
+               <div class="upcoming-series__championship text-uppercase mb-2 text-white">{{item.league_name}}</div>
+               <div class="info-teams-container">
+                  <div class="info-teams-item">
+                     <img [src]="item.participants[0].teamHomeLogo" class="info-team-logo" loading="lazy">
+                     <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[0].teamHomeName}}</p>
+                     <a class="btn btn-warning mt-3 fw-semibold" href="https://link.ggpedia.live/betano"> Ver cuotas</a>
+                  </div>
+                  <div class="info-teams-result">
+                     <a class="btn-vs" href="javascript:void(0)"> VS </a>
+                  </div>
+                  <div class="info-teams-item">
+                     <img [src]="item.participants[1].teamAwayLogo" class="info-team-logo" loading="lazy">
+                     <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[1].teamAwayName}}</p>
+                     <a href="javascript:void(0)" class="mt-4" style="cursor:default;"><img src="assets/img/betano-logo.png" class="betano-logo" loading="lazy"></a>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
@@ -35,70 +36,69 @@
                <span style="padding-top:2.5px;color:#fff;">En {{item.hour_coming_soon}}</span>
             </div>
             <div class="card-body">
-            <div class="upcoming-series__championship text-uppercase mb-2">{{item.league_name}}</div>
-             <div class="info-teams-container">
-                <div class="info-teams-item">
-                   <img [src]="item.participants[0].teamHomeLogo" class="info-team-logo" loading="lazy">
-                   <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[0].teamHomeName}}</p>
-                   <a class="btn btn-warning mt-3 fw-semibold" href="https://link.ggpedia.live/betano" target="_blank"> Ver cuotas</a>
-                </div>
-                <div class="info-teams-result">
-                   <a class="btn-vs" href="javascript:void(0)"> VS </a>
-                </div>
-                <div class="info-teams-item">
-                   <img [src]="item.participants[1].teamAwayLogo" class="info-team-logo" loading="lazy">
-                   <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[1].teamAwayName}}</p>
-                   <a href="javascript:void(0)" class="mt-4" style="cursor:default;"><img src="assets/img/betano-logo.png" class="betano-logo" loading="lazy"></a>
-                </div>
-             </div>
+               <div class="upcoming-series__championship text-uppercase mb-2">{{item.league_name}}</div>
+               <div class="info-teams-container">
+                  <div class="info-teams-item">
+                     <img [src]="item.participants[0].teamHomeLogo" class="info-team-logo" loading="lazy">
+                     <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[0].teamHomeName}}</p>
+                     <a class="btn btn-warning mt-3 fw-semibold" href="https://link.ggpedia.live/betano" target="_blank"> Ver cuotas</a>
+                  </div>
+                  <div class="info-teams-result">
+                     <a class="btn-vs" href="javascript:void(0)"> VS </a>
+                  </div>
+                  <div class="info-teams-item">
+                     <img [src]="item.participants[1].teamAwayLogo" class="info-team-logo" loading="lazy">
+                     <p class="mb-0 mt-3 small text-white name-team-width">{{item.participants[1].teamAwayName}}</p>
+                     <a href="javascript:void(0)" class="mt-4" style="cursor:default;"><img src="assets/img/betano-logo.png" class="betano-logo" loading="lazy"></a>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
    </ng-template>
-     <div class="col-sm-6 col-lg-12 mt-3">
-        <div class="card">
-           <div class="card-header d-sm-flex justify-content-between align-items-center border-0">
-              <h5 class="card-title">Próximas partidas</h5>
-           </div>
-           <div class="card-body pt-0">
-              <div class="v-block__content--with-margin upcoming-series__body text-body-2">
+   <div class="col-sm-6 col-lg-12 mt-3">
+      <div class="card">
+         <div class="card-header d-sm-flex justify-content-between align-items-center border-0">
+            <h5 class="card-title">Próximas partidas</h5>
+         </div>
+         <div class="card-body pt-0">
+            <div class="v-block__content--with-margin upcoming-series__body text-body-2">
                <div *ngIf="!upComingMatchesToday?.length;else upcomingMatchesNotEmpty">
-                  <div class="upcoming-series__item">
+                  <div class="upcoming-series__item" *ngIf="!upComingMatchesTomorrow?.length;else upComingMatchesTomorrowsNotEmpty">
                      <h5 class="text-center text-white mt-4">Por el momento no se encontraron próximas partidas</h5>
                   </div>
-                 
-                  <!--
-                  <div class="upcoming-series__item" *ngFor="let item of upComingMatchesTomorrow">
-                     <div class="upcoming-series__series">
-                        <div class="upcoming-series__championship text-uppercase">{{item.league_name}}</div>
-                        <img [src]="item.participants[0].teamHomeLogo" class="logo-matches">
-                        <div class="upcoming-series__label text-white fw-medium">{{item.participants[0].teamHomeName}}</div>
-                        <div class="d-flex justify-center align-center text-white fw-medium">{{item.begin_at}}</div>
-                        <img [src]="item.participants[1].teamAwayLogo" class="logo-matches">
-                        <div class="upcoming-series__label text-white fw-medium">{{item.participants[1].teamAwayName}}</div>
-                        <div class="d-flex justify-center align-center">
-                           <div class="upcoming-series__best-of"> BO{{item.best_of}}</div>
+                  <ng-template #upComingMatchesTomorrowsNotEmpty>
+                     <div class="upcoming-series__item" *ngFor="let item of upComingMatchesTomorrow">
+                        <div class="upcoming-series__series">
+                           <div class="upcoming-series__championship text-uppercase text-white">{{item.league_name}}</div>
+                           <img [src]="item.participants[0].teamHomeLogo" class="logo-matches">
+                           <div class="upcoming-series__label text-white fw-medium">{{item.participants[0].teamHomeName}}</div>
+                           <div class="d-flex justify-center align-center text-white fw-medium">{{item.begin_at | date : "shortTime"}}</div>
+                           <img [src]="item.participants[1].teamAwayLogo" class="logo-matches">
+                           <div class="upcoming-series__label text-white fw-medium">{{item.participants[1].teamAwayName}}</div>
+                           <div class="d-flex justify-center align-center">
+                              <div class="upcoming-series__best-of"> BO{{item.best_of}}</div>
+                           </div>
                         </div>
-                  </div>
-               </div>
-            -->
+                     </div>
+                  </ng-template>
                </div>
                <ng-template #upcomingMatchesNotEmpty>
                   <div class="upcoming-series__item" *ngFor="let item of upComingMatchesToday">
                      <div class="upcoming-series__series">
-                        <div class="upcoming-series__championship text-uppercase">{{item.league_name}}</div>
+                        <div class="upcoming-series__championship text-uppercase text-white">{{item.league_name}}</div>
                         <img [src]="item.participants[0].teamHomeLogo" class="logo-matches">
                         <div class="upcoming-series__label text-white fw-medium">{{item.participants[0].teamHomeName}}</div>
-                        <div class="d-flex justify-center align-center text-white fw-medium">{{item.begin_at}}</div>
+                        <div class="d-flex justify-center align-center text-white fw-medium">{{item.begin_at | date : "shortTime"}}</div>
                         <img [src]="item.participants[1].teamAwayLogo" class="logo-matches">
                         <div class="upcoming-series__label text-white fw-medium">{{item.participants[1].teamAwayName}}</div>
                         <div class="d-flex justify-center align-center">
                            <div class="upcoming-series__best-of"> BO{{item.best_of}}</div>
                         </div>
+                     </div>
                   </div>
-               </div>
                </ng-template>
-           </div>
-        </div>
-     </div>
-  </div>
+            </div>
+         </div>
+      </div>
+   </div>

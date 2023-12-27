@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { BetsService } from 'src/app/services/data-manager/bets.service';
 import { ApiMatch, Livematch, Pastmatch, Recentmatch } from 'src/app/services/interfaces/match.interface';
 import { Utils } from 'src/app/services/utils/utils';
@@ -17,7 +18,7 @@ export class LiveRecentsComponent {
   today = new Date();
   public loading = false;
 
-  constructor(private _betsService:BetsService) {}
+  constructor(private _betsService:BetsService, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
     this.getLiveMatch();
@@ -46,9 +47,9 @@ export class LiveRecentsComponent {
   }
 
   getRecentMatches(initialDate: string, finalDate: string) {
-    this.loading = true;
+    this.spinner.show();
     return this._betsService.getRecentMatches(initialDate, finalDate).subscribe( data => {
-      this.loading = false;
+      this.spinner.hide();
       this.mapRecentMatch(data.items)
     })
   }
@@ -69,6 +70,7 @@ export class LiveRecentsComponent {
       lifecycle: match.lifecycle,
       league_name: match.tournament.name,
       best_of: match.best_of,
+      start_date: match.start_date,
       participants: match.participants.map((participant: any) => ({
         team_id: participant.team_id,
         roster_id: participant.roster_id,
