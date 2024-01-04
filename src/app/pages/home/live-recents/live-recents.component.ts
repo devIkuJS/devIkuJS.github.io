@@ -28,13 +28,11 @@ export class LiveRecentsComponent {
     var initialDate = this.today.setHours(0, 0, 0).toString();
     var finalDate = this.today.setHours(23, 59, 59).toString();
     return this._betsService.getLiveMatches(initialDate, finalDate).subscribe( data => {
-      /*data.items = data.items.filter((obj: any) => {
+      data.items = data.items.filter((obj: any) => {
         return obj.lifecycle == "live" && obj.game.id == 1;
       });
-      console.log(data.items);
       this.mapLiveMatch(data.items)
-      */
-      this.mapLiveMatch(data)
+      //this.mapLiveMatch(data)
     })
   }
 
