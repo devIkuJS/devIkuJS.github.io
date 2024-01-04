@@ -32,7 +32,6 @@ export class LiveRecentsComponent {
         return obj.lifecycle == "live" && obj.game.id == 1;
       });
       this.mapLiveMatch(data.items)
-      //this.mapLiveMatch(data)
     })
   }
 
@@ -80,7 +79,6 @@ export class LiveRecentsComponent {
         id: game.id,
       })),
     }))
-    console.log("MATCHECITO", matches);
     this.setLiveMatches(matches)
   }
 
