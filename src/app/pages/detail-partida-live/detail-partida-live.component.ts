@@ -49,7 +49,12 @@ export class DetailPartidaLiveComponent {
     })
   }
 
+  private getFilterOficialBroadcaster(broadcasters: any){
+    return broadcasters.filter((element: any) => element.official == true)
+  }
+
   private mapDetailSerieMatch(data: any): void {
+    var officialBroadcaster = this.getFilterOficialBroadcaster(data.broadcasters)
       const serieMatch: DetailSerieMatch = {
         id: data.id,
         start_date: data.start_date,
@@ -63,7 +68,7 @@ export class DetailPartidaLiveComponent {
         teamHomePlayers: data.participants[0].players,
         teamAwayPlayers: data.participants[1].players,
         best_of: data.best_of,
-        broadcast: `https://player.twitch.tv/?channel=${data.broadcasters[0].broadcasts[0].external_id}&autoplay=false&parent=www.ggpedia.live`,
+        broadcast: `https://player.twitch.tv/?channel=${officialBroadcaster[0].broadcasts[0].external_id}&autoplay=false&parent=www.ggpedia.live`,
         match_summaries: data.match_summaries.map((summary: any) => ({
           id: summary.id,
           lifecycle: summary.lifecycle,
